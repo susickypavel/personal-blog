@@ -14,12 +14,16 @@
     "build": "gatsby build",
     "serve": "gatsby serve -o",
     "gatsby:info": "gatsby info -C",
-    "gatsby:clean": "gatsby clean"
+    "gatsby:clean": "gatsby clean",
+    "test:type-check": "tsc"
   },
   "dependencies": {
     "gatsby": "^2.13.31",
+    "gatsby-plugin-typescript": "^2.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
 }

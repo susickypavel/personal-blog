@@ -1,0 +1,18 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "Pavel Sušický's blog mostly about web technologies",
+  "repository": "git@github.com:Thesoreon/personal-blog.git",
+  "author": "Pavel Sušický <pavels.sus@gmail.com>",
+  "license": "MIT",
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ],
+  "dependencies": {
+    "gatsby": "^2.13.31",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {}
+}

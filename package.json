@@ -9,6 +9,13 @@
     ">0.25%",
     "not dead"
   ],
+  "scripts": {
+    "start": "gatsby develop -o -p 8080",
+    "build": "gatsby build",
+    "serve": "gatsby serve -o",
+    "gatsby:info": "gatsby info -C",
+    "gatsby:clean": "gatsby clean"
+  },
   "dependencies": {
     "gatsby": "^2.13.31",
     "react": "^16.8.6",

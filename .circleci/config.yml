@@ -22,3 +22,5 @@ jobs:
 
       - run: yarn test:type-check
       - run: yarn test:lint
+      - run: yarn test
+      - run: yarn test:coverage

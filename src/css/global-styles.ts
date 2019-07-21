@@ -1,7 +1,13 @@
 import { css } from "@emotion/core"
 
 export default css`
-  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
 
   html,
   body,

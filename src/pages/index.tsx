@@ -1,10 +1,11 @@
 import React from "react"
 import Layout from "../components/Layout"
+import BlogPostList from "../components/Index/BlogPostList"
 
 const Index = () => {
   return (
     <Layout>
-      <h1>Hello World</h1>
+      <BlogPostList />
     </Layout>
   )
 }

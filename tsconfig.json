@@ -11,7 +11,14 @@
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@generated/*": ["generated/*"],
+      "@css/*": ["css/*"],
+      "@utils/*": ["utils/*"]
+    }
   },
   "include": ["src/**/*"]
 }

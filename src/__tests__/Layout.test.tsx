@@ -1,7 +1,7 @@
 import React from "react"
 import { render } from "@testing-library/react"
 
-import Layout from "../components/Layout"
+import Layout from "@components/Layout"
 
 describe("Layout", () => {
   test("Should render Layout's component children", () => {

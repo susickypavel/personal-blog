@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
-import BlogPostPreview from "./BlogPostPreview"
-import { Query } from "../../generated/graphql"
+import BlogPostPreview from "@components/Index/BlogPostPreview"
+import { Query } from "@generated/graphql"
 
 const BlogPostList: React.FC = () => {
   const { allMarkdownRemark } = useStaticQuery<Query>(graphql`

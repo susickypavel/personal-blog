@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import BlogPostPreview from "../components/Index/BlogPostPreview"
+import BlogPostPreview from "@components/Index/BlogPostPreview"
 
 describe("BlogPostPreview", () => {
   test("should render a post preview, which contains header with returned title", () => {

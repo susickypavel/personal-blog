@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import BlogPostList from "../components/Index/BlogPostList"
+import BlogPostList from "@components/Index/BlogPostList"
 import { useStaticQuery } from "gatsby"
 
 jest.mock("gatsby")

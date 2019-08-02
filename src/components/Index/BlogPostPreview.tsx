@@ -1,6 +1,6 @@
 import React from "react"
 
-import { MarkdownRemark } from "../../generated/graphql"
+import { MarkdownRemark } from "@generated/graphql"
 
 interface Props {
   post: MarkdownRemark

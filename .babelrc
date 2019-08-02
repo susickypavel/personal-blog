@@ -1,3 +1,16 @@
 {
-  "presets": ["babel-preset-gatsby"]
+  "presets": ["babel-preset-gatsby"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@components": "./src/components/",
+          "@generated": "./src/generated/",
+          "@css": "./src/css/",
+          "@utils": "./src/utils/"
+        }
+      }
+    ]
+  ]
 }

@@ -15,6 +15,9 @@ const BlogPostList: React.FC = () => {
               title
               uploadDate
             }
+            fields {
+              slug
+            }
           }
         }
       }

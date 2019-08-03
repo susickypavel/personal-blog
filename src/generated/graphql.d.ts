@@ -617,6 +617,7 @@ export enum FileFieldsEnum {
   ChildMarkdownRemarkExcerpt = "childMarkdownRemark___excerpt",
   ChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___rawMarkdownBody",
   ChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___fileAbsolutePath",
+  ChildMarkdownRemarkFieldsSlug = "childMarkdownRemark___fields___slug",
   ChildMarkdownRemarkHtml = "childMarkdownRemark___html",
   ChildMarkdownRemarkHtmlAst = "childMarkdownRemark___htmlAst",
   ChildMarkdownRemarkExcerptAst = "childMarkdownRemark___excerptAst",
@@ -781,6 +782,7 @@ export type MarkdownRemark = Node & {
   excerpt?: Maybe<Scalars["String"]>
   rawMarkdownBody?: Maybe<Scalars["String"]>
   fileAbsolutePath?: Maybe<Scalars["String"]>
+  fields?: Maybe<MarkdownRemarkFields>
   html?: Maybe<Scalars["String"]>
   htmlAst?: Maybe<Scalars["JSON"]>
   excerptAst?: Maybe<Scalars["JSON"]>
@@ -836,6 +838,11 @@ export type MarkdownRemarkEdge = {
   next?: Maybe<MarkdownRemark>
   node: MarkdownRemark
   previous?: Maybe<MarkdownRemark>
+}
+
+export type MarkdownRemarkFields = {
+  __typename?: "MarkdownRemarkFields"
+  slug?: Maybe<Scalars["String"]>
 }
 
 export enum MarkdownRemarkFieldsEnum {
@@ -930,6 +937,7 @@ export enum MarkdownRemarkFieldsEnum {
   Excerpt = "excerpt",
   RawMarkdownBody = "rawMarkdownBody",
   FileAbsolutePath = "fileAbsolutePath",
+  FieldsSlug = "fields___slug",
   Html = "html",
   HtmlAst = "htmlAst",
   ExcerptAst = "excerptAst",
@@ -943,6 +951,10 @@ export enum MarkdownRemarkFieldsEnum {
   WordCountWords = "wordCount___words"
 }
 
+export type MarkdownRemarkFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
+}
+
 export type MarkdownRemarkFilterInput = {
   id?: Maybe<StringQueryOperatorInput>
   parent?: Maybe<NodeFilterInput>
@@ -952,6 +964,7 @@ export type MarkdownRemarkFilterInput = {
   excerpt?: Maybe<StringQueryOperatorInput>
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>
+  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
   html?: Maybe<StringQueryOperatorInput>
   htmlAst?: Maybe<JsonQueryOperatorInput>
   excerptAst?: Maybe<JsonQueryOperatorInput>
@@ -1111,6 +1124,7 @@ export type QuerySitePageArgs = {
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
   pluginCreator?: Maybe<SitePluginFilterInput>
   pluginCreatorId?: Maybe<StringQueryOperatorInput>
   componentPath?: Maybe<StringQueryOperatorInput>
@@ -1221,6 +1235,7 @@ export type QueryMarkdownRemarkArgs = {
   excerpt?: Maybe<StringQueryOperatorInput>
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>
+  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
   html?: Maybe<StringQueryOperatorInput>
   htmlAst?: Maybe<JsonQueryOperatorInput>
   excerptAst?: Maybe<JsonQueryOperatorInput>
@@ -1411,6 +1426,7 @@ export type SitePage = Node & {
   component?: Maybe<Scalars["String"]>
   componentChunkName?: Maybe<Scalars["String"]>
   isCreatedByStatefulCreatePages?: Maybe<Scalars["Boolean"]>
+  context?: Maybe<SitePageContext>
   pluginCreator?: Maybe<SitePlugin>
   pluginCreatorId?: Maybe<Scalars["String"]>
   componentPath?: Maybe<Scalars["String"]>
@@ -1434,6 +1450,33 @@ export type SitePageConnectionGroupArgs = {
   skip?: Maybe<Scalars["Int"]>
   limit?: Maybe<Scalars["Int"]>
   field: SitePageFieldsEnum
+}
+
+export type SitePageContext = {
+  __typename?: "SitePageContext"
+  node?: Maybe<SitePageContextNode>
+}
+
+export type SitePageContextFilterInput = {
+  node?: Maybe<SitePageContextNodeFilterInput>
+}
+
+export type SitePageContextNode = {
+  __typename?: "SitePageContextNode"
+  fields?: Maybe<SitePageContextNodeFields>
+}
+
+export type SitePageContextNodeFields = {
+  __typename?: "SitePageContextNodeFields"
+  slug?: Maybe<Scalars["String"]>
+}
+
+export type SitePageContextNodeFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePageContextNodeFilterInput = {
+  fields?: Maybe<SitePageContextNodeFieldsFilterInput>
 }
 
 export type SitePageEdge = {
@@ -1535,6 +1578,7 @@ export enum SitePageFieldsEnum {
   Component = "component",
   ComponentChunkName = "componentChunkName",
   IsCreatedByStatefulCreatePages = "isCreatedByStatefulCreatePages",
+  ContextNodeFieldsSlug = "context___node___fields___slug",
   PluginCreatorId = "pluginCreator___id",
   PluginCreatorParentId = "pluginCreator___parent___id",
   PluginCreatorParentParentId = "pluginCreator___parent___parent___id",
@@ -1614,6 +1658,7 @@ export type SitePageFilterInput = {
   component?: Maybe<StringQueryOperatorInput>
   componentChunkName?: Maybe<StringQueryOperatorInput>
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>
+  context?: Maybe<SitePageContextFilterInput>
   pluginCreator?: Maybe<SitePluginFilterInput>
   pluginCreatorId?: Maybe<StringQueryOperatorInput>
   componentPath?: Maybe<StringQueryOperatorInput>

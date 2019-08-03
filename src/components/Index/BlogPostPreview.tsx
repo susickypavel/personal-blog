@@ -11,7 +11,7 @@ interface Props {
 
 const BlogPostPreview: React.FC<Props> = ({
   post: {
-    id,
+    fields: { slug },
     frontmatter: { title, uploadDate }
   }
 }) => {
@@ -19,7 +19,7 @@ const BlogPostPreview: React.FC<Props> = ({
     <div>
       <h2>{title}</h2>
       <p>{formatDate(uploadDate)}</p>
-      <Link to={createPostPath(id)}>Read more</Link>
+      <Link to={createPostPath(slug)}>Read more</Link>
     </div>
   )
 }

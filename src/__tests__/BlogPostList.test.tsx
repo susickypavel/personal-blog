@@ -12,6 +12,9 @@ const responseValues = {
     edges: [
       {
         node: {
+          fields: {
+            slug: "/hello-world"
+          },
           frontmatter: {
             title: "Cool bro"
           }

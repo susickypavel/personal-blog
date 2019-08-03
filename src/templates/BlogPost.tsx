@@ -1,6 +1,7 @@
 import React from "react"
 
 import { MarkdownRemark } from "@generated/graphql.d"
+import { formatDate } from "@utils/index"
 
 interface Props {
   pageContext: {
@@ -9,9 +10,16 @@ interface Props {
 }
 
 const BlogPost: React.FC<Props> = ({ pageContext: { node } }) => {
+  const {
+    frontmatter: { title, uploadDate },
+    html
+  } = node
+
   return (
     <div>
-      <h1>{node.frontmatter.title}</h1>
+      <h1>{title}</h1>
+      <p>{formatDate(uploadDate)}</p>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   )
 }

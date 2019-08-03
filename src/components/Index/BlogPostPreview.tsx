@@ -1,6 +1,9 @@
 import React from "react"
+import { Link } from "gatsby"
 
-import { MarkdownRemark } from "@generated/graphql"
+import { MarkdownRemark } from "@generated/graphql.d"
+import { formatDate } from "@utils/index"
+import { createPostPath } from "@utils/index"
 
 interface Props {
   post: MarkdownRemark
@@ -8,12 +11,15 @@ interface Props {
 
 const BlogPostPreview: React.FC<Props> = ({
   post: {
-    frontmatter: { title }
+    id,
+    frontmatter: { title, uploadDate }
   }
 }) => {
   return (
     <div>
       <h2>{title}</h2>
+      <p>{formatDate(uploadDate)}</p>
+      <Link to={createPostPath(id)}>Read more</Link>
     </div>
   )
 }

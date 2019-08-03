@@ -613,6 +613,7 @@ export enum FileFieldsEnum {
   ChildMarkdownRemarkInternalOwner = "childMarkdownRemark___internal___owner",
   ChildMarkdownRemarkInternalType = "childMarkdownRemark___internal___type",
   ChildMarkdownRemarkFrontmatterTitle = "childMarkdownRemark___frontmatter___title",
+  ChildMarkdownRemarkFrontmatterUploadDate = "childMarkdownRemark___frontmatter___uploadDate",
   ChildMarkdownRemarkExcerpt = "childMarkdownRemark___excerpt",
   ChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___rawMarkdownBody",
   ChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___fileAbsolutePath",
@@ -925,6 +926,7 @@ export enum MarkdownRemarkFieldsEnum {
   InternalOwner = "internal___owner",
   InternalType = "internal___type",
   FrontmatterTitle = "frontmatter___title",
+  FrontmatterUploadDate = "frontmatter___uploadDate",
   Excerpt = "excerpt",
   RawMarkdownBody = "rawMarkdownBody",
   FileAbsolutePath = "fileAbsolutePath",
@@ -962,10 +964,19 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
   __typename?: "MarkdownRemarkFrontmatter"
   title?: Maybe<Scalars["String"]>
+  uploadDate?: Maybe<Scalars["Date"]>
+}
+
+export type MarkdownRemarkFrontmatterUploadDateArgs = {
+  formatString?: Maybe<Scalars["String"]>
+  fromNow?: Maybe<Scalars["Boolean"]>
+  difference?: Maybe<Scalars["String"]>
+  locale?: Maybe<Scalars["String"]>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
+  uploadDate?: Maybe<DateQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {

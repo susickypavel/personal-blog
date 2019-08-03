@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 import BlogPostPreview from "@components/Index/BlogPostPreview"
-import { Query } from "@generated/graphql"
+import { Query } from "@generated/graphql.d"
 
 const BlogPostList: React.FC = () => {
   const { allMarkdownRemark } = useStaticQuery<Query>(graphql`
@@ -10,8 +10,10 @@ const BlogPostList: React.FC = () => {
       allMarkdownRemark {
         edges {
           node {
+            id
             frontmatter {
               title
+              uploadDate
             }
           }
         }

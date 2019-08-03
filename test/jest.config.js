@@ -8,5 +8,9 @@ module.exports = {
     "@generated(.*)$": "<rootDir>/src/generated$1",
     "@css(.*)$": "<rootDir>/src/css$1",
     "@utils(.*)$": "<rootDir>/src/utils$1"
-  }
+  },
+  globals: {
+    __PATH_PREFIX__: ``
+  },
+  setupFiles: ["<rootDir>/test/loadershim.ts"]
 }

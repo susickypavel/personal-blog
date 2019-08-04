@@ -16,7 +16,19 @@ module.exports = {
         path: `${__dirname}/posts`
       }
     },
-    `gatsby-transformer-remark`
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true
+            }
+          }
+        ]
+      }
+    }
   ],
   siteMetadata: {
     description: "Personal blog of Paul from Czech",

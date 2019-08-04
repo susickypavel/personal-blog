@@ -17,8 +17,9 @@
       "@components/*": ["components/*"],
       "@generated/*": ["generated/*"],
       "@css/*": ["css/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@services/*": ["services/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "index.d.ts"]
 }

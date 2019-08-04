@@ -1,21 +1,25 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { Global } from "@emotion/core"
 
-import Seo from "@components/Seo"
+import Seo, { CustomSiteMetaData } from "@components/Seo"
+
 import globalStyles from "@css/global-styles"
 import resetStyles from "@css/reset-styles"
 
+import { SocialMediaProvider } from "@services/social-media-service"
+
 interface Props {
   title?: string
+  customMetaData?: CustomSiteMetaData
 }
 
-const Layout: React.FC<Props> = ({ children, title = "Blog" }) => {
+const Layout: React.FC<Props> = ({ children, title = "Blog", customMetaData = {} }) => {
   return (
-    <Fragment>
-      <Seo title={title} />
+    <SocialMediaProvider>
+      <Seo title={title} metaData={customMetaData} />
       <Global styles={[globalStyles, resetStyles]} />
       {children}
-    </Fragment>
+    </SocialMediaProvider>
   )
 }
 

@@ -2,6 +2,7 @@ import React from "react"
 
 import { MarkdownRemark } from "@generated/graphql.d"
 import { formatDate } from "@utils/index"
+import Layout from "@components/Layout"
 
 interface Props {
   pageContext: {
@@ -16,11 +17,14 @@ const BlogPost: React.FC<Props> = ({ pageContext: { node } }) => {
   } = node
 
   return (
-    <div>
+    <Layout
+      title={title}
+      customMetaData={{ customTitle: title, customDescription: `Uploaded ${formatDate(uploadDate)}` }}
+    >
       <h1>{title}</h1>
       <p>{formatDate(uploadDate)}</p>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
+    </Layout>
   )
 }
 

@@ -1165,6 +1165,7 @@ export type QuerySiteArgs = {
   parent?: Maybe<NodeFilterInput>
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
+  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
   port?: Maybe<IntQueryOperatorInput>
   host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
@@ -1258,6 +1259,7 @@ export type Site = Node & {
   parent?: Maybe<Node>
   children: Array<Node>
   internal: Internal
+  siteMetadata?: Maybe<SiteSiteMetadata>
   port?: Maybe<Scalars["Int"]>
   host?: Maybe<Scalars["String"]>
   pathPrefix?: Maybe<Scalars["String"]>
@@ -1386,6 +1388,9 @@ export enum SiteFieldsEnum {
   InternalMediaType = "internal___mediaType",
   InternalOwner = "internal___owner",
   InternalType = "internal___type",
+  SiteMetadataDescription = "siteMetadata___description",
+  SiteMetadataImage = "siteMetadata___image",
+  SiteMetadataTwitter = "siteMetadata___twitter",
   Port = "port",
   Host = "host",
   PathPrefix = "pathPrefix",
@@ -1398,6 +1403,7 @@ export type SiteFilterInput = {
   parent?: Maybe<NodeFilterInput>
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
+  siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
   port?: Maybe<IntQueryOperatorInput>
   host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
@@ -1464,6 +1470,8 @@ export type SitePageContextFilterInput = {
 export type SitePageContextNode = {
   __typename?: "SitePageContextNode"
   fields?: Maybe<SitePageContextNodeFields>
+  frontmatter?: Maybe<SitePageContextNodeFrontmatter>
+  html?: Maybe<Scalars["String"]>
 }
 
 export type SitePageContextNodeFields = {
@@ -1477,6 +1485,19 @@ export type SitePageContextNodeFieldsFilterInput = {
 
 export type SitePageContextNodeFilterInput = {
   fields?: Maybe<SitePageContextNodeFieldsFilterInput>
+  frontmatter?: Maybe<SitePageContextNodeFrontmatterFilterInput>
+  html?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePageContextNodeFrontmatter = {
+  __typename?: "SitePageContextNodeFrontmatter"
+  title?: Maybe<Scalars["String"]>
+  uploadDate?: Maybe<Scalars["Date"]>
+}
+
+export type SitePageContextNodeFrontmatterFilterInput = {
+  title?: Maybe<StringQueryOperatorInput>
+  uploadDate?: Maybe<DateQueryOperatorInput>
 }
 
 export type SitePageEdge = {
@@ -1579,6 +1600,9 @@ export enum SitePageFieldsEnum {
   ComponentChunkName = "componentChunkName",
   IsCreatedByStatefulCreatePages = "isCreatedByStatefulCreatePages",
   ContextNodeFieldsSlug = "context___node___fields___slug",
+  ContextNodeFrontmatterTitle = "context___node___frontmatter___title",
+  ContextNodeFrontmatterUploadDate = "context___node___frontmatter___uploadDate",
+  ContextNodeHtml = "context___node___html",
   PluginCreatorId = "pluginCreator___id",
   PluginCreatorParentId = "pluginCreator___parent___id",
   PluginCreatorParentParentId = "pluginCreator___parent___parent___id",
@@ -1955,6 +1979,19 @@ export type SitePluginPluginOptionsFilterInput = {
 export type SitePluginSortInput = {
   fields?: Maybe<Array<Maybe<SitePluginFieldsEnum>>>
   order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
+export type SiteSiteMetadata = {
+  __typename?: "SiteSiteMetadata"
+  description?: Maybe<Scalars["String"]>
+  image?: Maybe<Scalars["String"]>
+  twitter?: Maybe<Scalars["String"]>
+}
+
+export type SiteSiteMetadataFilterInput = {
+  description?: Maybe<StringQueryOperatorInput>
+  image?: Maybe<StringQueryOperatorInput>
+  twitter?: Maybe<StringQueryOperatorInput>
 }
 
 export type SiteSortInput = {

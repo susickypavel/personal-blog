@@ -17,5 +17,9 @@ module.exports = {
       }
     },
     `gatsby-transformer-remark`
-  ]
+  ],
+  siteMetadata: {
+    description: "Personal blog of Paul from Czech",
+    twitter: "@Thesoreon"
+  }
 }

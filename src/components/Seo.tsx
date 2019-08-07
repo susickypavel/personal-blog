@@ -38,6 +38,7 @@ const Seo: React.FC<Props> = ({ title, metaData: { customDescription, customTitl
 
       <meta property="og:description" content={customDescription || description} />
 
+      <meta name="twitter:image" content={`${process.env.BASE_URL}StrangerThings.jpg`} />
       <meta name="twitter:creator" content={twitter} />
       <meta name="twitter:title" content={customTitle || title} />
       <meta name="twitter:description" content={customDescription || description} />

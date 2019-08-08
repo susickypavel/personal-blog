@@ -9,6 +9,7 @@ describe("BlogPostPreview", () => {
   test("should render a post preview, which contains header with returned title", () => {
     const { container } = render(
       <BlogPostPreview
+        thumbnail={{}}
         post={{
           frontmatter: { title: "Cool bro" },
           internal: null,
@@ -27,6 +28,7 @@ describe("BlogPostPreview", () => {
   test("should render a post preview, which contains anchor tag which points to full blogpost", () => {
     const { container } = render(
       <BlogPostPreview
+        thumbnail={{}}
         post={{
           frontmatter: { title: "Cool bro" },
           internal: null,

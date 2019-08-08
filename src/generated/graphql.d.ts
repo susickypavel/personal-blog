@@ -333,6 +333,12 @@ export type DirectorySortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>
 }
 
+export type DuotoneGradient = {
+  highlight: Scalars["String"]
+  shadow: Scalars["String"]
+  opacity?: Maybe<Scalars["Int"]>
+}
+
 export type File = Node & {
   __typename?: "File"
   birthtime?: Maybe<Scalars["Date"]>
@@ -375,6 +381,7 @@ export type File = Node & {
   children: Array<Node>
   internal: Internal
   childMarkdownRemark?: Maybe<MarkdownRemark>
+  childImageSharp?: Maybe<ImageSharp>
 }
 
 export type FileModifiedTimeArgs = {
@@ -575,6 +582,24 @@ export enum FileFieldsEnum {
   InternalOwner = "internal___owner",
   InternalType = "internal___type",
   ChildMarkdownRemarkId = "childMarkdownRemark___id",
+  ChildMarkdownRemarkFrontmatterTitle = "childMarkdownRemark___frontmatter___title",
+  ChildMarkdownRemarkFrontmatterUploadDate = "childMarkdownRemark___frontmatter___uploadDate",
+  ChildMarkdownRemarkFrontmatterThumbnail = "childMarkdownRemark___frontmatter___thumbnail",
+  ChildMarkdownRemarkExcerpt = "childMarkdownRemark___excerpt",
+  ChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___rawMarkdownBody",
+  ChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___fileAbsolutePath",
+  ChildMarkdownRemarkFieldsSlug = "childMarkdownRemark___fields___slug",
+  ChildMarkdownRemarkHtml = "childMarkdownRemark___html",
+  ChildMarkdownRemarkHtmlAst = "childMarkdownRemark___htmlAst",
+  ChildMarkdownRemarkExcerptAst = "childMarkdownRemark___excerptAst",
+  ChildMarkdownRemarkHeadings = "childMarkdownRemark___headings",
+  ChildMarkdownRemarkHeadingsValue = "childMarkdownRemark___headings___value",
+  ChildMarkdownRemarkHeadingsDepth = "childMarkdownRemark___headings___depth",
+  ChildMarkdownRemarkTimeToRead = "childMarkdownRemark___timeToRead",
+  ChildMarkdownRemarkTableOfContents = "childMarkdownRemark___tableOfContents",
+  ChildMarkdownRemarkWordCountParagraphs = "childMarkdownRemark___wordCount___paragraphs",
+  ChildMarkdownRemarkWordCountSentences = "childMarkdownRemark___wordCount___sentences",
+  ChildMarkdownRemarkWordCountWords = "childMarkdownRemark___wordCount___words",
   ChildMarkdownRemarkParentId = "childMarkdownRemark___parent___id",
   ChildMarkdownRemarkParentParentId = "childMarkdownRemark___parent___parent___id",
   ChildMarkdownRemarkParentParentChildren = "childMarkdownRemark___parent___parent___children",
@@ -612,23 +637,97 @@ export enum FileFieldsEnum {
   ChildMarkdownRemarkInternalMediaType = "childMarkdownRemark___internal___mediaType",
   ChildMarkdownRemarkInternalOwner = "childMarkdownRemark___internal___owner",
   ChildMarkdownRemarkInternalType = "childMarkdownRemark___internal___type",
-  ChildMarkdownRemarkFrontmatterTitle = "childMarkdownRemark___frontmatter___title",
-  ChildMarkdownRemarkFrontmatterUploadDate = "childMarkdownRemark___frontmatter___uploadDate",
-  ChildMarkdownRemarkExcerpt = "childMarkdownRemark___excerpt",
-  ChildMarkdownRemarkRawMarkdownBody = "childMarkdownRemark___rawMarkdownBody",
-  ChildMarkdownRemarkFileAbsolutePath = "childMarkdownRemark___fileAbsolutePath",
-  ChildMarkdownRemarkFieldsSlug = "childMarkdownRemark___fields___slug",
-  ChildMarkdownRemarkHtml = "childMarkdownRemark___html",
-  ChildMarkdownRemarkHtmlAst = "childMarkdownRemark___htmlAst",
-  ChildMarkdownRemarkExcerptAst = "childMarkdownRemark___excerptAst",
-  ChildMarkdownRemarkHeadings = "childMarkdownRemark___headings",
-  ChildMarkdownRemarkHeadingsValue = "childMarkdownRemark___headings___value",
-  ChildMarkdownRemarkHeadingsDepth = "childMarkdownRemark___headings___depth",
-  ChildMarkdownRemarkTimeToRead = "childMarkdownRemark___timeToRead",
-  ChildMarkdownRemarkTableOfContents = "childMarkdownRemark___tableOfContents",
-  ChildMarkdownRemarkWordCountParagraphs = "childMarkdownRemark___wordCount___paragraphs",
-  ChildMarkdownRemarkWordCountSentences = "childMarkdownRemark___wordCount___sentences",
-  ChildMarkdownRemarkWordCountWords = "childMarkdownRemark___wordCount___words"
+  ChildImageSharpId = "childImageSharp___id",
+  ChildImageSharpFixedBase64 = "childImageSharp___fixed___base64",
+  ChildImageSharpFixedTracedSvg = "childImageSharp___fixed___tracedSVG",
+  ChildImageSharpFixedAspectRatio = "childImageSharp___fixed___aspectRatio",
+  ChildImageSharpFixedWidth = "childImageSharp___fixed___width",
+  ChildImageSharpFixedHeight = "childImageSharp___fixed___height",
+  ChildImageSharpFixedSrc = "childImageSharp___fixed___src",
+  ChildImageSharpFixedSrcSet = "childImageSharp___fixed___srcSet",
+  ChildImageSharpFixedSrcWebp = "childImageSharp___fixed___srcWebp",
+  ChildImageSharpFixedSrcSetWebp = "childImageSharp___fixed___srcSetWebp",
+  ChildImageSharpFixedOriginalName = "childImageSharp___fixed___originalName",
+  ChildImageSharpResolutionsBase64 = "childImageSharp___resolutions___base64",
+  ChildImageSharpResolutionsTracedSvg = "childImageSharp___resolutions___tracedSVG",
+  ChildImageSharpResolutionsAspectRatio = "childImageSharp___resolutions___aspectRatio",
+  ChildImageSharpResolutionsWidth = "childImageSharp___resolutions___width",
+  ChildImageSharpResolutionsHeight = "childImageSharp___resolutions___height",
+  ChildImageSharpResolutionsSrc = "childImageSharp___resolutions___src",
+  ChildImageSharpResolutionsSrcSet = "childImageSharp___resolutions___srcSet",
+  ChildImageSharpResolutionsSrcWebp = "childImageSharp___resolutions___srcWebp",
+  ChildImageSharpResolutionsSrcSetWebp = "childImageSharp___resolutions___srcSetWebp",
+  ChildImageSharpResolutionsOriginalName = "childImageSharp___resolutions___originalName",
+  ChildImageSharpFluidBase64 = "childImageSharp___fluid___base64",
+  ChildImageSharpFluidTracedSvg = "childImageSharp___fluid___tracedSVG",
+  ChildImageSharpFluidAspectRatio = "childImageSharp___fluid___aspectRatio",
+  ChildImageSharpFluidSrc = "childImageSharp___fluid___src",
+  ChildImageSharpFluidSrcSet = "childImageSharp___fluid___srcSet",
+  ChildImageSharpFluidSrcWebp = "childImageSharp___fluid___srcWebp",
+  ChildImageSharpFluidSrcSetWebp = "childImageSharp___fluid___srcSetWebp",
+  ChildImageSharpFluidSizes = "childImageSharp___fluid___sizes",
+  ChildImageSharpFluidOriginalImg = "childImageSharp___fluid___originalImg",
+  ChildImageSharpFluidOriginalName = "childImageSharp___fluid___originalName",
+  ChildImageSharpFluidPresentationWidth = "childImageSharp___fluid___presentationWidth",
+  ChildImageSharpFluidPresentationHeight = "childImageSharp___fluid___presentationHeight",
+  ChildImageSharpSizesBase64 = "childImageSharp___sizes___base64",
+  ChildImageSharpSizesTracedSvg = "childImageSharp___sizes___tracedSVG",
+  ChildImageSharpSizesAspectRatio = "childImageSharp___sizes___aspectRatio",
+  ChildImageSharpSizesSrc = "childImageSharp___sizes___src",
+  ChildImageSharpSizesSrcSet = "childImageSharp___sizes___srcSet",
+  ChildImageSharpSizesSrcWebp = "childImageSharp___sizes___srcWebp",
+  ChildImageSharpSizesSrcSetWebp = "childImageSharp___sizes___srcSetWebp",
+  ChildImageSharpSizesSizes = "childImageSharp___sizes___sizes",
+  ChildImageSharpSizesOriginalImg = "childImageSharp___sizes___originalImg",
+  ChildImageSharpSizesOriginalName = "childImageSharp___sizes___originalName",
+  ChildImageSharpSizesPresentationWidth = "childImageSharp___sizes___presentationWidth",
+  ChildImageSharpSizesPresentationHeight = "childImageSharp___sizes___presentationHeight",
+  ChildImageSharpOriginalWidth = "childImageSharp___original___width",
+  ChildImageSharpOriginalHeight = "childImageSharp___original___height",
+  ChildImageSharpOriginalSrc = "childImageSharp___original___src",
+  ChildImageSharpResizeSrc = "childImageSharp___resize___src",
+  ChildImageSharpResizeTracedSvg = "childImageSharp___resize___tracedSVG",
+  ChildImageSharpResizeWidth = "childImageSharp___resize___width",
+  ChildImageSharpResizeHeight = "childImageSharp___resize___height",
+  ChildImageSharpResizeAspectRatio = "childImageSharp___resize___aspectRatio",
+  ChildImageSharpResizeOriginalName = "childImageSharp___resize___originalName",
+  ChildImageSharpParentId = "childImageSharp___parent___id",
+  ChildImageSharpParentParentId = "childImageSharp___parent___parent___id",
+  ChildImageSharpParentParentChildren = "childImageSharp___parent___parent___children",
+  ChildImageSharpParentChildren = "childImageSharp___parent___children",
+  ChildImageSharpParentChildrenId = "childImageSharp___parent___children___id",
+  ChildImageSharpParentChildrenChildren = "childImageSharp___parent___children___children",
+  ChildImageSharpParentInternalContent = "childImageSharp___parent___internal___content",
+  ChildImageSharpParentInternalContentDigest = "childImageSharp___parent___internal___contentDigest",
+  ChildImageSharpParentInternalDescription = "childImageSharp___parent___internal___description",
+  ChildImageSharpParentInternalFieldOwners = "childImageSharp___parent___internal___fieldOwners",
+  ChildImageSharpParentInternalIgnoreType = "childImageSharp___parent___internal___ignoreType",
+  ChildImageSharpParentInternalMediaType = "childImageSharp___parent___internal___mediaType",
+  ChildImageSharpParentInternalOwner = "childImageSharp___parent___internal___owner",
+  ChildImageSharpParentInternalType = "childImageSharp___parent___internal___type",
+  ChildImageSharpChildren = "childImageSharp___children",
+  ChildImageSharpChildrenId = "childImageSharp___children___id",
+  ChildImageSharpChildrenParentId = "childImageSharp___children___parent___id",
+  ChildImageSharpChildrenParentChildren = "childImageSharp___children___parent___children",
+  ChildImageSharpChildrenChildren = "childImageSharp___children___children",
+  ChildImageSharpChildrenChildrenId = "childImageSharp___children___children___id",
+  ChildImageSharpChildrenChildrenChildren = "childImageSharp___children___children___children",
+  ChildImageSharpChildrenInternalContent = "childImageSharp___children___internal___content",
+  ChildImageSharpChildrenInternalContentDigest = "childImageSharp___children___internal___contentDigest",
+  ChildImageSharpChildrenInternalDescription = "childImageSharp___children___internal___description",
+  ChildImageSharpChildrenInternalFieldOwners = "childImageSharp___children___internal___fieldOwners",
+  ChildImageSharpChildrenInternalIgnoreType = "childImageSharp___children___internal___ignoreType",
+  ChildImageSharpChildrenInternalMediaType = "childImageSharp___children___internal___mediaType",
+  ChildImageSharpChildrenInternalOwner = "childImageSharp___children___internal___owner",
+  ChildImageSharpChildrenInternalType = "childImageSharp___children___internal___type",
+  ChildImageSharpInternalContent = "childImageSharp___internal___content",
+  ChildImageSharpInternalContentDigest = "childImageSharp___internal___contentDigest",
+  ChildImageSharpInternalDescription = "childImageSharp___internal___description",
+  ChildImageSharpInternalFieldOwners = "childImageSharp___internal___fieldOwners",
+  ChildImageSharpInternalIgnoreType = "childImageSharp___internal___ignoreType",
+  ChildImageSharpInternalMediaType = "childImageSharp___internal___mediaType",
+  ChildImageSharpInternalOwner = "childImageSharp___internal___owner",
+  ChildImageSharpInternalType = "childImageSharp___internal___type"
 }
 
 export type FileFilterInput = {
@@ -671,6 +770,7 @@ export type FileFilterInput = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>
+  childImageSharp?: Maybe<ImageSharpFilterInput>
 }
 
 export type FileGroupConnection = {
@@ -699,154 +799,228 @@ export type FloatQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars["Float"]>>>
 }
 
-export type Internal = {
-  __typename?: "Internal"
-  content?: Maybe<Scalars["String"]>
-  contentDigest: Scalars["String"]
-  description?: Maybe<Scalars["String"]>
-  fieldOwners?: Maybe<Array<Maybe<Scalars["String"]>>>
-  ignoreType?: Maybe<Scalars["Boolean"]>
-  mediaType?: Maybe<Scalars["String"]>
-  owner: Scalars["String"]
-  type: Scalars["String"]
+export enum ImageCropFocus {
+  Center = "CENTER",
+  North = "NORTH",
+  Northeast = "NORTHEAST",
+  East = "EAST",
+  Southeast = "SOUTHEAST",
+  South = "SOUTH",
+  Southwest = "SOUTHWEST",
+  West = "WEST",
+  Northwest = "NORTHWEST",
+  Entropy = "ENTROPY",
+  Attention = "ATTENTION"
 }
 
-export type InternalFilterInput = {
-  content?: Maybe<StringQueryOperatorInput>
-  contentDigest?: Maybe<StringQueryOperatorInput>
-  description?: Maybe<StringQueryOperatorInput>
-  fieldOwners?: Maybe<StringQueryOperatorInput>
-  ignoreType?: Maybe<BooleanQueryOperatorInput>
-  mediaType?: Maybe<StringQueryOperatorInput>
-  owner?: Maybe<StringQueryOperatorInput>
-  type?: Maybe<StringQueryOperatorInput>
+export enum ImageFit {
+  Cover = "COVER",
+  Contain = "CONTAIN",
+  Fill = "FILL"
 }
 
-export type IntQueryOperatorInput = {
-  eq?: Maybe<Scalars["Int"]>
-  ne?: Maybe<Scalars["Int"]>
-  gt?: Maybe<Scalars["Int"]>
-  gte?: Maybe<Scalars["Int"]>
-  lt?: Maybe<Scalars["Int"]>
-  lte?: Maybe<Scalars["Int"]>
-  in?: Maybe<Array<Maybe<Scalars["Int"]>>>
-  nin?: Maybe<Array<Maybe<Scalars["Int"]>>>
+export enum ImageFormat {
+  NoChange = "NO_CHANGE",
+  Jpg = "JPG",
+  Png = "PNG",
+  Webp = "WEBP"
 }
 
-export type JsonQueryOperatorInput = {
-  eq?: Maybe<Scalars["JSON"]>
-  ne?: Maybe<Scalars["JSON"]>
-  in?: Maybe<Array<Maybe<Scalars["JSON"]>>>
-  nin?: Maybe<Array<Maybe<Scalars["JSON"]>>>
-  regex?: Maybe<Scalars["JSON"]>
-  glob?: Maybe<Scalars["JSON"]>
-}
-
-export enum MarkdownExcerptFormats {
-  Plain = "PLAIN",
-  Html = "HTML",
-  Markdown = "MARKDOWN"
-}
-
-export type MarkdownHeading = {
-  __typename?: "MarkdownHeading"
-  value?: Maybe<Scalars["String"]>
-  depth?: Maybe<Scalars["Int"]>
-}
-
-export type MarkdownHeadingFilterInput = {
-  value?: Maybe<StringQueryOperatorInput>
-  depth?: Maybe<IntQueryOperatorInput>
-}
-
-export type MarkdownHeadingFilterListInput = {
-  elemMatch?: Maybe<MarkdownHeadingFilterInput>
-}
-
-export enum MarkdownHeadingLevels {
-  H1 = "h1",
-  H2 = "h2",
-  H3 = "h3",
-  H4 = "h4",
-  H5 = "h5",
-  H6 = "h6"
-}
-
-export type MarkdownRemark = Node & {
-  __typename?: "MarkdownRemark"
+export type ImageSharp = Node & {
+  __typename?: "ImageSharp"
   id: Scalars["ID"]
+  fixed?: Maybe<ImageSharpFixed>
+  resolutions?: Maybe<ImageSharpResolutions>
+  fluid?: Maybe<ImageSharpFluid>
+  sizes?: Maybe<ImageSharpSizes>
+  original?: Maybe<ImageSharpOriginal>
+  resize?: Maybe<ImageSharpResize>
   parent?: Maybe<Node>
   children: Array<Node>
   internal: Internal
-  frontmatter?: Maybe<MarkdownRemarkFrontmatter>
-  excerpt?: Maybe<Scalars["String"]>
-  rawMarkdownBody?: Maybe<Scalars["String"]>
-  fileAbsolutePath?: Maybe<Scalars["String"]>
-  fields?: Maybe<MarkdownRemarkFields>
-  html?: Maybe<Scalars["String"]>
-  htmlAst?: Maybe<Scalars["JSON"]>
-  excerptAst?: Maybe<Scalars["JSON"]>
-  headings?: Maybe<Array<Maybe<MarkdownHeading>>>
-  timeToRead?: Maybe<Scalars["Int"]>
-  tableOfContents?: Maybe<Scalars["String"]>
-  wordCount?: Maybe<MarkdownWordCount>
 }
 
-export type MarkdownRemarkExcerptArgs = {
-  pruneLength?: Maybe<Scalars["Int"]>
-  truncate?: Maybe<Scalars["Boolean"]>
-  format?: Maybe<MarkdownExcerptFormats>
+export type ImageSharpFixedArgs = {
+  width?: Maybe<Scalars["Int"]>
+  height?: Maybe<Scalars["Int"]>
+  base64Width?: Maybe<Scalars["Int"]>
+  jpegProgressive?: Maybe<Scalars["Boolean"]>
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>
+  grayscale?: Maybe<Scalars["Boolean"]>
+  duotone?: Maybe<DuotoneGradient>
+  traceSVG?: Maybe<Potrace>
+  quality?: Maybe<Scalars["Int"]>
+  toFormat?: Maybe<ImageFormat>
+  toFormatBase64?: Maybe<ImageFormat>
+  cropFocus?: Maybe<ImageCropFocus>
+  fit?: Maybe<ImageFit>
+  background?: Maybe<Scalars["String"]>
+  rotate?: Maybe<Scalars["Int"]>
+  trim?: Maybe<Scalars["Float"]>
 }
 
-export type MarkdownRemarkExcerptAstArgs = {
-  pruneLength?: Maybe<Scalars["Int"]>
-  truncate?: Maybe<Scalars["Boolean"]>
+export type ImageSharpResolutionsArgs = {
+  width?: Maybe<Scalars["Int"]>
+  height?: Maybe<Scalars["Int"]>
+  base64Width?: Maybe<Scalars["Int"]>
+  jpegProgressive?: Maybe<Scalars["Boolean"]>
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>
+  grayscale?: Maybe<Scalars["Boolean"]>
+  duotone?: Maybe<DuotoneGradient>
+  traceSVG?: Maybe<Potrace>
+  quality?: Maybe<Scalars["Int"]>
+  toFormat?: Maybe<ImageFormat>
+  toFormatBase64?: Maybe<ImageFormat>
+  cropFocus?: Maybe<ImageCropFocus>
+  fit?: Maybe<ImageFit>
+  background?: Maybe<Scalars["String"]>
+  rotate?: Maybe<Scalars["Int"]>
+  trim?: Maybe<Scalars["Float"]>
 }
 
-export type MarkdownRemarkHeadingsArgs = {
-  depth?: Maybe<MarkdownHeadingLevels>
+export type ImageSharpFluidArgs = {
+  maxWidth?: Maybe<Scalars["Int"]>
+  maxHeight?: Maybe<Scalars["Int"]>
+  base64Width?: Maybe<Scalars["Int"]>
+  grayscale?: Maybe<Scalars["Boolean"]>
+  jpegProgressive?: Maybe<Scalars["Boolean"]>
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>
+  duotone?: Maybe<DuotoneGradient>
+  traceSVG?: Maybe<Potrace>
+  quality?: Maybe<Scalars["Int"]>
+  toFormat?: Maybe<ImageFormat>
+  toFormatBase64?: Maybe<ImageFormat>
+  cropFocus?: Maybe<ImageCropFocus>
+  fit?: Maybe<ImageFit>
+  background?: Maybe<Scalars["String"]>
+  rotate?: Maybe<Scalars["Int"]>
+  trim?: Maybe<Scalars["Float"]>
+  sizes?: Maybe<Scalars["String"]>
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars["Int"]>>>
 }
 
-export type MarkdownRemarkTableOfContentsArgs = {
-  pathToSlugField?: Maybe<Scalars["String"]>
-  maxDepth?: Maybe<Scalars["Int"]>
-  heading?: Maybe<Scalars["String"]>
+export type ImageSharpSizesArgs = {
+  maxWidth?: Maybe<Scalars["Int"]>
+  maxHeight?: Maybe<Scalars["Int"]>
+  base64Width?: Maybe<Scalars["Int"]>
+  grayscale?: Maybe<Scalars["Boolean"]>
+  jpegProgressive?: Maybe<Scalars["Boolean"]>
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>
+  duotone?: Maybe<DuotoneGradient>
+  traceSVG?: Maybe<Potrace>
+  quality?: Maybe<Scalars["Int"]>
+  toFormat?: Maybe<ImageFormat>
+  toFormatBase64?: Maybe<ImageFormat>
+  cropFocus?: Maybe<ImageCropFocus>
+  fit?: Maybe<ImageFit>
+  background?: Maybe<Scalars["String"]>
+  rotate?: Maybe<Scalars["Int"]>
+  trim?: Maybe<Scalars["Float"]>
+  sizes?: Maybe<Scalars["String"]>
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars["Int"]>>>
 }
 
-export type MarkdownRemarkConnection = {
-  __typename?: "MarkdownRemarkConnection"
+export type ImageSharpResizeArgs = {
+  width?: Maybe<Scalars["Int"]>
+  height?: Maybe<Scalars["Int"]>
+  quality?: Maybe<Scalars["Int"]>
+  jpegProgressive?: Maybe<Scalars["Boolean"]>
+  pngCompressionLevel?: Maybe<Scalars["Int"]>
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>
+  grayscale?: Maybe<Scalars["Boolean"]>
+  duotone?: Maybe<DuotoneGradient>
+  base64?: Maybe<Scalars["Boolean"]>
+  traceSVG?: Maybe<Potrace>
+  toFormat?: Maybe<ImageFormat>
+  cropFocus?: Maybe<ImageCropFocus>
+  fit?: Maybe<ImageFit>
+  background?: Maybe<Scalars["String"]>
+  rotate?: Maybe<Scalars["Int"]>
+  trim?: Maybe<Scalars["Float"]>
+}
+
+export type ImageSharpConnection = {
+  __typename?: "ImageSharpConnection"
   totalCount: Scalars["Int"]
-  edges: Array<MarkdownRemarkEdge>
-  nodes: Array<MarkdownRemark>
+  edges: Array<ImageSharpEdge>
+  nodes: Array<ImageSharp>
   pageInfo: PageInfo
   distinct: Array<Scalars["String"]>
-  group: Array<MarkdownRemarkGroupConnection>
+  group: Array<ImageSharpGroupConnection>
 }
 
-export type MarkdownRemarkConnectionDistinctArgs = {
-  field: MarkdownRemarkFieldsEnum
+export type ImageSharpConnectionDistinctArgs = {
+  field: ImageSharpFieldsEnum
 }
 
-export type MarkdownRemarkConnectionGroupArgs = {
+export type ImageSharpConnectionGroupArgs = {
   skip?: Maybe<Scalars["Int"]>
   limit?: Maybe<Scalars["Int"]>
-  field: MarkdownRemarkFieldsEnum
+  field: ImageSharpFieldsEnum
 }
 
-export type MarkdownRemarkEdge = {
-  __typename?: "MarkdownRemarkEdge"
-  next?: Maybe<MarkdownRemark>
-  node: MarkdownRemark
-  previous?: Maybe<MarkdownRemark>
+export type ImageSharpEdge = {
+  __typename?: "ImageSharpEdge"
+  next?: Maybe<ImageSharp>
+  node: ImageSharp
+  previous?: Maybe<ImageSharp>
 }
 
-export type MarkdownRemarkFields = {
-  __typename?: "MarkdownRemarkFields"
-  slug?: Maybe<Scalars["String"]>
-}
-
-export enum MarkdownRemarkFieldsEnum {
+export enum ImageSharpFieldsEnum {
   Id = "id",
+  FixedBase64 = "fixed___base64",
+  FixedTracedSvg = "fixed___tracedSVG",
+  FixedAspectRatio = "fixed___aspectRatio",
+  FixedWidth = "fixed___width",
+  FixedHeight = "fixed___height",
+  FixedSrc = "fixed___src",
+  FixedSrcSet = "fixed___srcSet",
+  FixedSrcWebp = "fixed___srcWebp",
+  FixedSrcSetWebp = "fixed___srcSetWebp",
+  FixedOriginalName = "fixed___originalName",
+  ResolutionsBase64 = "resolutions___base64",
+  ResolutionsTracedSvg = "resolutions___tracedSVG",
+  ResolutionsAspectRatio = "resolutions___aspectRatio",
+  ResolutionsWidth = "resolutions___width",
+  ResolutionsHeight = "resolutions___height",
+  ResolutionsSrc = "resolutions___src",
+  ResolutionsSrcSet = "resolutions___srcSet",
+  ResolutionsSrcWebp = "resolutions___srcWebp",
+  ResolutionsSrcSetWebp = "resolutions___srcSetWebp",
+  ResolutionsOriginalName = "resolutions___originalName",
+  FluidBase64 = "fluid___base64",
+  FluidTracedSvg = "fluid___tracedSVG",
+  FluidAspectRatio = "fluid___aspectRatio",
+  FluidSrc = "fluid___src",
+  FluidSrcSet = "fluid___srcSet",
+  FluidSrcWebp = "fluid___srcWebp",
+  FluidSrcSetWebp = "fluid___srcSetWebp",
+  FluidSizes = "fluid___sizes",
+  FluidOriginalImg = "fluid___originalImg",
+  FluidOriginalName = "fluid___originalName",
+  FluidPresentationWidth = "fluid___presentationWidth",
+  FluidPresentationHeight = "fluid___presentationHeight",
+  SizesBase64 = "sizes___base64",
+  SizesTracedSvg = "sizes___tracedSVG",
+  SizesAspectRatio = "sizes___aspectRatio",
+  SizesSrc = "sizes___src",
+  SizesSrcSet = "sizes___srcSet",
+  SizesSrcWebp = "sizes___srcWebp",
+  SizesSrcSetWebp = "sizes___srcSetWebp",
+  SizesSizes = "sizes___sizes",
+  SizesOriginalImg = "sizes___originalImg",
+  SizesOriginalName = "sizes___originalName",
+  SizesPresentationWidth = "sizes___presentationWidth",
+  SizesPresentationHeight = "sizes___presentationHeight",
+  OriginalWidth = "original___width",
+  OriginalHeight = "original___height",
+  OriginalSrc = "original___src",
+  ResizeSrc = "resize___src",
+  ResizeTracedSvg = "resize___tracedSVG",
+  ResizeWidth = "resize___width",
+  ResizeHeight = "resize___height",
+  ResizeAspectRatio = "resize___aspectRatio",
+  ResizeOriginalName = "resize___originalName",
   ParentId = "parent___id",
   ParentParentId = "parent___parent___id",
   ParentParentParentId = "parent___parent___parent___id",
@@ -931,9 +1105,336 @@ export enum MarkdownRemarkFieldsEnum {
   InternalIgnoreType = "internal___ignoreType",
   InternalMediaType = "internal___mediaType",
   InternalOwner = "internal___owner",
-  InternalType = "internal___type",
+  InternalType = "internal___type"
+}
+
+export type ImageSharpFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>
+  fixed?: Maybe<ImageSharpFixedFilterInput>
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>
+  fluid?: Maybe<ImageSharpFluidFilterInput>
+  sizes?: Maybe<ImageSharpSizesFilterInput>
+  original?: Maybe<ImageSharpOriginalFilterInput>
+  resize?: Maybe<ImageSharpResizeFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+}
+
+export type ImageSharpFixed = {
+  __typename?: "ImageSharpFixed"
+  base64?: Maybe<Scalars["String"]>
+  tracedSVG?: Maybe<Scalars["String"]>
+  aspectRatio?: Maybe<Scalars["Float"]>
+  width?: Maybe<Scalars["Float"]>
+  height?: Maybe<Scalars["Float"]>
+  src?: Maybe<Scalars["String"]>
+  srcSet?: Maybe<Scalars["String"]>
+  srcWebp?: Maybe<Scalars["String"]>
+  srcSetWebp?: Maybe<Scalars["String"]>
+  originalName?: Maybe<Scalars["String"]>
+}
+
+export type ImageSharpFixedFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>
+  tracedSVG?: Maybe<StringQueryOperatorInput>
+  aspectRatio?: Maybe<FloatQueryOperatorInput>
+  width?: Maybe<FloatQueryOperatorInput>
+  height?: Maybe<FloatQueryOperatorInput>
+  src?: Maybe<StringQueryOperatorInput>
+  srcSet?: Maybe<StringQueryOperatorInput>
+  srcWebp?: Maybe<StringQueryOperatorInput>
+  srcSetWebp?: Maybe<StringQueryOperatorInput>
+  originalName?: Maybe<StringQueryOperatorInput>
+}
+
+export type ImageSharpFluid = {
+  __typename?: "ImageSharpFluid"
+  base64?: Maybe<Scalars["String"]>
+  tracedSVG?: Maybe<Scalars["String"]>
+  aspectRatio?: Maybe<Scalars["Float"]>
+  src?: Maybe<Scalars["String"]>
+  srcSet?: Maybe<Scalars["String"]>
+  srcWebp?: Maybe<Scalars["String"]>
+  srcSetWebp?: Maybe<Scalars["String"]>
+  sizes?: Maybe<Scalars["String"]>
+  originalImg?: Maybe<Scalars["String"]>
+  originalName?: Maybe<Scalars["String"]>
+  presentationWidth?: Maybe<Scalars["Int"]>
+  presentationHeight?: Maybe<Scalars["Int"]>
+}
+
+export type ImageSharpFluidFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>
+  tracedSVG?: Maybe<StringQueryOperatorInput>
+  aspectRatio?: Maybe<FloatQueryOperatorInput>
+  src?: Maybe<StringQueryOperatorInput>
+  srcSet?: Maybe<StringQueryOperatorInput>
+  srcWebp?: Maybe<StringQueryOperatorInput>
+  srcSetWebp?: Maybe<StringQueryOperatorInput>
+  sizes?: Maybe<StringQueryOperatorInput>
+  originalImg?: Maybe<StringQueryOperatorInput>
+  originalName?: Maybe<StringQueryOperatorInput>
+  presentationWidth?: Maybe<IntQueryOperatorInput>
+  presentationHeight?: Maybe<IntQueryOperatorInput>
+}
+
+export type ImageSharpGroupConnection = {
+  __typename?: "ImageSharpGroupConnection"
+  totalCount: Scalars["Int"]
+  edges: Array<ImageSharpEdge>
+  nodes: Array<ImageSharp>
+  pageInfo: PageInfo
+  field: Scalars["String"]
+  fieldValue?: Maybe<Scalars["String"]>
+}
+
+export type ImageSharpOriginal = {
+  __typename?: "ImageSharpOriginal"
+  width?: Maybe<Scalars["Float"]>
+  height?: Maybe<Scalars["Float"]>
+  src?: Maybe<Scalars["String"]>
+}
+
+export type ImageSharpOriginalFilterInput = {
+  width?: Maybe<FloatQueryOperatorInput>
+  height?: Maybe<FloatQueryOperatorInput>
+  src?: Maybe<StringQueryOperatorInput>
+}
+
+export type ImageSharpResize = {
+  __typename?: "ImageSharpResize"
+  src?: Maybe<Scalars["String"]>
+  tracedSVG?: Maybe<Scalars["String"]>
+  width?: Maybe<Scalars["Int"]>
+  height?: Maybe<Scalars["Int"]>
+  aspectRatio?: Maybe<Scalars["Float"]>
+  originalName?: Maybe<Scalars["String"]>
+}
+
+export type ImageSharpResizeFilterInput = {
+  src?: Maybe<StringQueryOperatorInput>
+  tracedSVG?: Maybe<StringQueryOperatorInput>
+  width?: Maybe<IntQueryOperatorInput>
+  height?: Maybe<IntQueryOperatorInput>
+  aspectRatio?: Maybe<FloatQueryOperatorInput>
+  originalName?: Maybe<StringQueryOperatorInput>
+}
+
+export type ImageSharpResolutions = {
+  __typename?: "ImageSharpResolutions"
+  base64?: Maybe<Scalars["String"]>
+  tracedSVG?: Maybe<Scalars["String"]>
+  aspectRatio?: Maybe<Scalars["Float"]>
+  width?: Maybe<Scalars["Float"]>
+  height?: Maybe<Scalars["Float"]>
+  src?: Maybe<Scalars["String"]>
+  srcSet?: Maybe<Scalars["String"]>
+  srcWebp?: Maybe<Scalars["String"]>
+  srcSetWebp?: Maybe<Scalars["String"]>
+  originalName?: Maybe<Scalars["String"]>
+}
+
+export type ImageSharpResolutionsFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>
+  tracedSVG?: Maybe<StringQueryOperatorInput>
+  aspectRatio?: Maybe<FloatQueryOperatorInput>
+  width?: Maybe<FloatQueryOperatorInput>
+  height?: Maybe<FloatQueryOperatorInput>
+  src?: Maybe<StringQueryOperatorInput>
+  srcSet?: Maybe<StringQueryOperatorInput>
+  srcWebp?: Maybe<StringQueryOperatorInput>
+  srcSetWebp?: Maybe<StringQueryOperatorInput>
+  originalName?: Maybe<StringQueryOperatorInput>
+}
+
+export type ImageSharpSizes = {
+  __typename?: "ImageSharpSizes"
+  base64?: Maybe<Scalars["String"]>
+  tracedSVG?: Maybe<Scalars["String"]>
+  aspectRatio?: Maybe<Scalars["Float"]>
+  src?: Maybe<Scalars["String"]>
+  srcSet?: Maybe<Scalars["String"]>
+  srcWebp?: Maybe<Scalars["String"]>
+  srcSetWebp?: Maybe<Scalars["String"]>
+  sizes?: Maybe<Scalars["String"]>
+  originalImg?: Maybe<Scalars["String"]>
+  originalName?: Maybe<Scalars["String"]>
+  presentationWidth?: Maybe<Scalars["Int"]>
+  presentationHeight?: Maybe<Scalars["Int"]>
+}
+
+export type ImageSharpSizesFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>
+  tracedSVG?: Maybe<StringQueryOperatorInput>
+  aspectRatio?: Maybe<FloatQueryOperatorInput>
+  src?: Maybe<StringQueryOperatorInput>
+  srcSet?: Maybe<StringQueryOperatorInput>
+  srcWebp?: Maybe<StringQueryOperatorInput>
+  srcSetWebp?: Maybe<StringQueryOperatorInput>
+  sizes?: Maybe<StringQueryOperatorInput>
+  originalImg?: Maybe<StringQueryOperatorInput>
+  originalName?: Maybe<StringQueryOperatorInput>
+  presentationWidth?: Maybe<IntQueryOperatorInput>
+  presentationHeight?: Maybe<IntQueryOperatorInput>
+}
+
+export type ImageSharpSortInput = {
+  fields?: Maybe<Array<Maybe<ImageSharpFieldsEnum>>>
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>
+}
+
+export type Internal = {
+  __typename?: "Internal"
+  content?: Maybe<Scalars["String"]>
+  contentDigest: Scalars["String"]
+  description?: Maybe<Scalars["String"]>
+  fieldOwners?: Maybe<Array<Maybe<Scalars["String"]>>>
+  ignoreType?: Maybe<Scalars["Boolean"]>
+  mediaType?: Maybe<Scalars["String"]>
+  owner: Scalars["String"]
+  type: Scalars["String"]
+}
+
+export type InternalFilterInput = {
+  content?: Maybe<StringQueryOperatorInput>
+  contentDigest?: Maybe<StringQueryOperatorInput>
+  description?: Maybe<StringQueryOperatorInput>
+  fieldOwners?: Maybe<StringQueryOperatorInput>
+  ignoreType?: Maybe<BooleanQueryOperatorInput>
+  mediaType?: Maybe<StringQueryOperatorInput>
+  owner?: Maybe<StringQueryOperatorInput>
+  type?: Maybe<StringQueryOperatorInput>
+}
+
+export type IntQueryOperatorInput = {
+  eq?: Maybe<Scalars["Int"]>
+  ne?: Maybe<Scalars["Int"]>
+  gt?: Maybe<Scalars["Int"]>
+  gte?: Maybe<Scalars["Int"]>
+  lt?: Maybe<Scalars["Int"]>
+  lte?: Maybe<Scalars["Int"]>
+  in?: Maybe<Array<Maybe<Scalars["Int"]>>>
+  nin?: Maybe<Array<Maybe<Scalars["Int"]>>>
+}
+
+export type JsonQueryOperatorInput = {
+  eq?: Maybe<Scalars["JSON"]>
+  ne?: Maybe<Scalars["JSON"]>
+  in?: Maybe<Array<Maybe<Scalars["JSON"]>>>
+  nin?: Maybe<Array<Maybe<Scalars["JSON"]>>>
+  regex?: Maybe<Scalars["JSON"]>
+  glob?: Maybe<Scalars["JSON"]>
+}
+
+export enum MarkdownExcerptFormats {
+  Plain = "PLAIN",
+  Html = "HTML",
+  Markdown = "MARKDOWN"
+}
+
+export type MarkdownHeading = {
+  __typename?: "MarkdownHeading"
+  value?: Maybe<Scalars["String"]>
+  depth?: Maybe<Scalars["Int"]>
+}
+
+export type MarkdownHeadingFilterInput = {
+  value?: Maybe<StringQueryOperatorInput>
+  depth?: Maybe<IntQueryOperatorInput>
+}
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: Maybe<MarkdownHeadingFilterInput>
+}
+
+export enum MarkdownHeadingLevels {
+  H1 = "h1",
+  H2 = "h2",
+  H3 = "h3",
+  H4 = "h4",
+  H5 = "h5",
+  H6 = "h6"
+}
+
+export type MarkdownRemark = Node & {
+  __typename?: "MarkdownRemark"
+  id: Scalars["ID"]
+  frontmatter?: Maybe<MarkdownRemarkFrontmatter>
+  excerpt?: Maybe<Scalars["String"]>
+  rawMarkdownBody?: Maybe<Scalars["String"]>
+  fileAbsolutePath?: Maybe<Scalars["String"]>
+  fields?: Maybe<MarkdownRemarkFields>
+  html?: Maybe<Scalars["String"]>
+  htmlAst?: Maybe<Scalars["JSON"]>
+  excerptAst?: Maybe<Scalars["JSON"]>
+  headings?: Maybe<Array<Maybe<MarkdownHeading>>>
+  timeToRead?: Maybe<Scalars["Int"]>
+  tableOfContents?: Maybe<Scalars["String"]>
+  wordCount?: Maybe<MarkdownWordCount>
+  parent?: Maybe<Node>
+  children: Array<Node>
+  internal: Internal
+}
+
+export type MarkdownRemarkExcerptArgs = {
+  pruneLength?: Maybe<Scalars["Int"]>
+  truncate?: Maybe<Scalars["Boolean"]>
+  format?: Maybe<MarkdownExcerptFormats>
+}
+
+export type MarkdownRemarkExcerptAstArgs = {
+  pruneLength?: Maybe<Scalars["Int"]>
+  truncate?: Maybe<Scalars["Boolean"]>
+}
+
+export type MarkdownRemarkHeadingsArgs = {
+  depth?: Maybe<MarkdownHeadingLevels>
+}
+
+export type MarkdownRemarkTableOfContentsArgs = {
+  pathToSlugField?: Maybe<Scalars["String"]>
+  maxDepth?: Maybe<Scalars["Int"]>
+  heading?: Maybe<Scalars["String"]>
+}
+
+export type MarkdownRemarkConnection = {
+  __typename?: "MarkdownRemarkConnection"
+  totalCount: Scalars["Int"]
+  edges: Array<MarkdownRemarkEdge>
+  nodes: Array<MarkdownRemark>
+  pageInfo: PageInfo
+  distinct: Array<Scalars["String"]>
+  group: Array<MarkdownRemarkGroupConnection>
+}
+
+export type MarkdownRemarkConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldsEnum
+}
+
+export type MarkdownRemarkConnectionGroupArgs = {
+  skip?: Maybe<Scalars["Int"]>
+  limit?: Maybe<Scalars["Int"]>
+  field: MarkdownRemarkFieldsEnum
+}
+
+export type MarkdownRemarkEdge = {
+  __typename?: "MarkdownRemarkEdge"
+  next?: Maybe<MarkdownRemark>
+  node: MarkdownRemark
+  previous?: Maybe<MarkdownRemark>
+}
+
+export type MarkdownRemarkFields = {
+  __typename?: "MarkdownRemarkFields"
+  slug?: Maybe<Scalars["String"]>
+}
+
+export enum MarkdownRemarkFieldsEnum {
+  Id = "id",
   FrontmatterTitle = "frontmatter___title",
   FrontmatterUploadDate = "frontmatter___uploadDate",
+  FrontmatterThumbnail = "frontmatter___thumbnail",
   Excerpt = "excerpt",
   RawMarkdownBody = "rawMarkdownBody",
   FileAbsolutePath = "fileAbsolutePath",
@@ -948,7 +1449,92 @@ export enum MarkdownRemarkFieldsEnum {
   TableOfContents = "tableOfContents",
   WordCountParagraphs = "wordCount___paragraphs",
   WordCountSentences = "wordCount___sentences",
-  WordCountWords = "wordCount___words"
+  WordCountWords = "wordCount___words",
+  ParentId = "parent___id",
+  ParentParentId = "parent___parent___id",
+  ParentParentParentId = "parent___parent___parent___id",
+  ParentParentParentChildren = "parent___parent___parent___children",
+  ParentParentChildren = "parent___parent___children",
+  ParentParentChildrenId = "parent___parent___children___id",
+  ParentParentChildrenChildren = "parent___parent___children___children",
+  ParentParentInternalContent = "parent___parent___internal___content",
+  ParentParentInternalContentDigest = "parent___parent___internal___contentDigest",
+  ParentParentInternalDescription = "parent___parent___internal___description",
+  ParentParentInternalFieldOwners = "parent___parent___internal___fieldOwners",
+  ParentParentInternalIgnoreType = "parent___parent___internal___ignoreType",
+  ParentParentInternalMediaType = "parent___parent___internal___mediaType",
+  ParentParentInternalOwner = "parent___parent___internal___owner",
+  ParentParentInternalType = "parent___parent___internal___type",
+  ParentChildren = "parent___children",
+  ParentChildrenId = "parent___children___id",
+  ParentChildrenParentId = "parent___children___parent___id",
+  ParentChildrenParentChildren = "parent___children___parent___children",
+  ParentChildrenChildren = "parent___children___children",
+  ParentChildrenChildrenId = "parent___children___children___id",
+  ParentChildrenChildrenChildren = "parent___children___children___children",
+  ParentChildrenInternalContent = "parent___children___internal___content",
+  ParentChildrenInternalContentDigest = "parent___children___internal___contentDigest",
+  ParentChildrenInternalDescription = "parent___children___internal___description",
+  ParentChildrenInternalFieldOwners = "parent___children___internal___fieldOwners",
+  ParentChildrenInternalIgnoreType = "parent___children___internal___ignoreType",
+  ParentChildrenInternalMediaType = "parent___children___internal___mediaType",
+  ParentChildrenInternalOwner = "parent___children___internal___owner",
+  ParentChildrenInternalType = "parent___children___internal___type",
+  ParentInternalContent = "parent___internal___content",
+  ParentInternalContentDigest = "parent___internal___contentDigest",
+  ParentInternalDescription = "parent___internal___description",
+  ParentInternalFieldOwners = "parent___internal___fieldOwners",
+  ParentInternalIgnoreType = "parent___internal___ignoreType",
+  ParentInternalMediaType = "parent___internal___mediaType",
+  ParentInternalOwner = "parent___internal___owner",
+  ParentInternalType = "parent___internal___type",
+  Children = "children",
+  ChildrenId = "children___id",
+  ChildrenParentId = "children___parent___id",
+  ChildrenParentParentId = "children___parent___parent___id",
+  ChildrenParentParentChildren = "children___parent___parent___children",
+  ChildrenParentChildren = "children___parent___children",
+  ChildrenParentChildrenId = "children___parent___children___id",
+  ChildrenParentChildrenChildren = "children___parent___children___children",
+  ChildrenParentInternalContent = "children___parent___internal___content",
+  ChildrenParentInternalContentDigest = "children___parent___internal___contentDigest",
+  ChildrenParentInternalDescription = "children___parent___internal___description",
+  ChildrenParentInternalFieldOwners = "children___parent___internal___fieldOwners",
+  ChildrenParentInternalIgnoreType = "children___parent___internal___ignoreType",
+  ChildrenParentInternalMediaType = "children___parent___internal___mediaType",
+  ChildrenParentInternalOwner = "children___parent___internal___owner",
+  ChildrenParentInternalType = "children___parent___internal___type",
+  ChildrenChildren = "children___children",
+  ChildrenChildrenId = "children___children___id",
+  ChildrenChildrenParentId = "children___children___parent___id",
+  ChildrenChildrenParentChildren = "children___children___parent___children",
+  ChildrenChildrenChildren = "children___children___children",
+  ChildrenChildrenChildrenId = "children___children___children___id",
+  ChildrenChildrenChildrenChildren = "children___children___children___children",
+  ChildrenChildrenInternalContent = "children___children___internal___content",
+  ChildrenChildrenInternalContentDigest = "children___children___internal___contentDigest",
+  ChildrenChildrenInternalDescription = "children___children___internal___description",
+  ChildrenChildrenInternalFieldOwners = "children___children___internal___fieldOwners",
+  ChildrenChildrenInternalIgnoreType = "children___children___internal___ignoreType",
+  ChildrenChildrenInternalMediaType = "children___children___internal___mediaType",
+  ChildrenChildrenInternalOwner = "children___children___internal___owner",
+  ChildrenChildrenInternalType = "children___children___internal___type",
+  ChildrenInternalContent = "children___internal___content",
+  ChildrenInternalContentDigest = "children___internal___contentDigest",
+  ChildrenInternalDescription = "children___internal___description",
+  ChildrenInternalFieldOwners = "children___internal___fieldOwners",
+  ChildrenInternalIgnoreType = "children___internal___ignoreType",
+  ChildrenInternalMediaType = "children___internal___mediaType",
+  ChildrenInternalOwner = "children___internal___owner",
+  ChildrenInternalType = "children___internal___type",
+  InternalContent = "internal___content",
+  InternalContentDigest = "internal___contentDigest",
+  InternalDescription = "internal___description",
+  InternalFieldOwners = "internal___fieldOwners",
+  InternalIgnoreType = "internal___ignoreType",
+  InternalMediaType = "internal___mediaType",
+  InternalOwner = "internal___owner",
+  InternalType = "internal___type"
 }
 
 export type MarkdownRemarkFieldsFilterInput = {
@@ -957,9 +1543,6 @@ export type MarkdownRemarkFieldsFilterInput = {
 
 export type MarkdownRemarkFilterInput = {
   id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
   frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>
   excerpt?: Maybe<StringQueryOperatorInput>
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>
@@ -972,12 +1555,16 @@ export type MarkdownRemarkFilterInput = {
   timeToRead?: Maybe<IntQueryOperatorInput>
   tableOfContents?: Maybe<StringQueryOperatorInput>
   wordCount?: Maybe<MarkdownWordCountFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
 }
 
 export type MarkdownRemarkFrontmatter = {
   __typename?: "MarkdownRemarkFrontmatter"
   title?: Maybe<Scalars["String"]>
   uploadDate?: Maybe<Scalars["Date"]>
+  thumbnail?: Maybe<Scalars["String"]>
 }
 
 export type MarkdownRemarkFrontmatterUploadDateArgs = {
@@ -990,6 +1577,7 @@ export type MarkdownRemarkFrontmatterUploadDateArgs = {
 export type MarkdownRemarkFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
   uploadDate?: Maybe<DateQueryOperatorInput>
+  thumbnail?: Maybe<StringQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -1049,10 +1637,35 @@ export type PageInfo = {
   perPage?: Maybe<Scalars["Int"]>
 }
 
+export type Potrace = {
+  turnPolicy?: Maybe<PotraceTurnPolicy>
+  turdSize?: Maybe<Scalars["Float"]>
+  alphaMax?: Maybe<Scalars["Float"]>
+  optCurve?: Maybe<Scalars["Boolean"]>
+  optTolerance?: Maybe<Scalars["Float"]>
+  threshold?: Maybe<Scalars["Int"]>
+  blackOnWhite?: Maybe<Scalars["Boolean"]>
+  color?: Maybe<Scalars["String"]>
+  background?: Maybe<Scalars["String"]>
+}
+
+export enum PotraceTurnPolicy {
+  TurnpolicyBlack = "TURNPOLICY_BLACK",
+  TurnpolicyWhite = "TURNPOLICY_WHITE",
+  TurnpolicyLeft = "TURNPOLICY_LEFT",
+  TurnpolicyRight = "TURNPOLICY_RIGHT",
+  TurnpolicyMinority = "TURNPOLICY_MINORITY",
+  TurnpolicyMajority = "TURNPOLICY_MAJORITY"
+}
+
 export type Query = {
   __typename?: "Query"
+  imageSharp?: Maybe<ImageSharp>
+  allImageSharp?: Maybe<ImageSharpConnection>
   file?: Maybe<File>
   allFile?: Maybe<FileConnection>
+  markdownRemark?: Maybe<MarkdownRemark>
+  allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
   sitePage?: Maybe<SitePage>
   allSitePage?: Maybe<SitePageConnection>
   sitePlugin?: Maybe<SitePlugin>
@@ -1061,8 +1674,26 @@ export type Query = {
   allSite?: Maybe<SiteConnection>
   directory?: Maybe<Directory>
   allDirectory?: Maybe<DirectoryConnection>
-  markdownRemark?: Maybe<MarkdownRemark>
-  allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
+}
+
+export type QueryImageSharpArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  fixed?: Maybe<ImageSharpFixedFilterInput>
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>
+  fluid?: Maybe<ImageSharpFluidFilterInput>
+  sizes?: Maybe<ImageSharpSizesFilterInput>
+  original?: Maybe<ImageSharpOriginalFilterInput>
+  resize?: Maybe<ImageSharpResizeFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+}
+
+export type QueryAllImageSharpArgs = {
+  filter?: Maybe<ImageSharpFilterInput>
+  sort?: Maybe<ImageSharpSortInput>
+  skip?: Maybe<Scalars["Int"]>
+  limit?: Maybe<Scalars["Int"]>
 }
 
 export type QueryFileArgs = {
@@ -1105,11 +1736,38 @@ export type QueryFileArgs = {
   children?: Maybe<NodeFilterListInput>
   internal?: Maybe<InternalFilterInput>
   childMarkdownRemark?: Maybe<MarkdownRemarkFilterInput>
+  childImageSharp?: Maybe<ImageSharpFilterInput>
 }
 
 export type QueryAllFileArgs = {
   filter?: Maybe<FileFilterInput>
   sort?: Maybe<FileSortInput>
+  skip?: Maybe<Scalars["Int"]>
+  limit?: Maybe<Scalars["Int"]>
+}
+
+export type QueryMarkdownRemarkArgs = {
+  id?: Maybe<StringQueryOperatorInput>
+  frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>
+  excerpt?: Maybe<StringQueryOperatorInput>
+  rawMarkdownBody?: Maybe<StringQueryOperatorInput>
+  fileAbsolutePath?: Maybe<StringQueryOperatorInput>
+  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
+  html?: Maybe<StringQueryOperatorInput>
+  htmlAst?: Maybe<JsonQueryOperatorInput>
+  excerptAst?: Maybe<JsonQueryOperatorInput>
+  headings?: Maybe<MarkdownHeadingFilterListInput>
+  timeToRead?: Maybe<IntQueryOperatorInput>
+  tableOfContents?: Maybe<StringQueryOperatorInput>
+  wordCount?: Maybe<MarkdownWordCountFilterInput>
+  parent?: Maybe<NodeFilterInput>
+  children?: Maybe<NodeFilterListInput>
+  internal?: Maybe<InternalFilterInput>
+}
+
+export type QueryAllMarkdownRemarkArgs = {
+  filter?: Maybe<MarkdownRemarkFilterInput>
+  sort?: Maybe<MarkdownRemarkSortInput>
   skip?: Maybe<Scalars["Int"]>
   limit?: Maybe<Scalars["Int"]>
 }
@@ -1223,32 +1881,6 @@ export type QueryDirectoryArgs = {
 export type QueryAllDirectoryArgs = {
   filter?: Maybe<DirectoryFilterInput>
   sort?: Maybe<DirectorySortInput>
-  skip?: Maybe<Scalars["Int"]>
-  limit?: Maybe<Scalars["Int"]>
-}
-
-export type QueryMarkdownRemarkArgs = {
-  id?: Maybe<StringQueryOperatorInput>
-  parent?: Maybe<NodeFilterInput>
-  children?: Maybe<NodeFilterListInput>
-  internal?: Maybe<InternalFilterInput>
-  frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>
-  excerpt?: Maybe<StringQueryOperatorInput>
-  rawMarkdownBody?: Maybe<StringQueryOperatorInput>
-  fileAbsolutePath?: Maybe<StringQueryOperatorInput>
-  fields?: Maybe<MarkdownRemarkFieldsFilterInput>
-  html?: Maybe<StringQueryOperatorInput>
-  htmlAst?: Maybe<JsonQueryOperatorInput>
-  excerptAst?: Maybe<JsonQueryOperatorInput>
-  headings?: Maybe<MarkdownHeadingFilterListInput>
-  timeToRead?: Maybe<IntQueryOperatorInput>
-  tableOfContents?: Maybe<StringQueryOperatorInput>
-  wordCount?: Maybe<MarkdownWordCountFilterInput>
-}
-
-export type QueryAllMarkdownRemarkArgs = {
-  filter?: Maybe<MarkdownRemarkFilterInput>
-  sort?: Maybe<MarkdownRemarkSortInput>
   skip?: Maybe<Scalars["Int"]>
   limit?: Maybe<Scalars["Int"]>
 }
@@ -1389,7 +2021,6 @@ export enum SiteFieldsEnum {
   InternalOwner = "internal___owner",
   InternalType = "internal___type",
   SiteMetadataDescription = "siteMetadata___description",
-  SiteMetadataImage = "siteMetadata___image",
   SiteMetadataTwitter = "siteMetadata___twitter",
   Port = "port",
   Host = "host",
@@ -1644,9 +2275,16 @@ export enum SitePageFieldsEnum {
   PluginCreatorResolve = "pluginCreator___resolve",
   PluginCreatorName = "pluginCreator___name",
   PluginCreatorVersion = "pluginCreator___version",
+  PluginCreatorPluginOptionsPlugins = "pluginCreator___pluginOptions___plugins",
+  PluginCreatorPluginOptionsPluginsResolve = "pluginCreator___pluginOptions___plugins___resolve",
+  PluginCreatorPluginOptionsPluginsId = "pluginCreator___pluginOptions___plugins___id",
+  PluginCreatorPluginOptionsPluginsName = "pluginCreator___pluginOptions___plugins___name",
+  PluginCreatorPluginOptionsPluginsVersion = "pluginCreator___pluginOptions___plugins___version",
+  PluginCreatorPluginOptionsPluginsPluginFilepath = "pluginCreator___pluginOptions___plugins___pluginFilepath",
   PluginCreatorPluginOptionsPathToConfigModule = "pluginCreator___pluginOptions___pathToConfigModule",
   PluginCreatorPluginOptionsName = "pluginCreator___pluginOptions___name",
   PluginCreatorPluginOptionsPath = "pluginCreator___pluginOptions___path",
+  PluginCreatorPluginOptionsShowLineNumbers = "pluginCreator___pluginOptions___showLineNumbers",
   PluginCreatorPluginOptionsPathCheck = "pluginCreator___pluginOptions___pathCheck",
   PluginCreatorNodeApIs = "pluginCreator___nodeAPIs",
   PluginCreatorBrowserApIs = "pluginCreator___browserAPIs",
@@ -1837,9 +2475,17 @@ export enum SitePluginFieldsEnum {
   Resolve = "resolve",
   Name = "name",
   Version = "version",
+  PluginOptionsPlugins = "pluginOptions___plugins",
+  PluginOptionsPluginsResolve = "pluginOptions___plugins___resolve",
+  PluginOptionsPluginsId = "pluginOptions___plugins___id",
+  PluginOptionsPluginsName = "pluginOptions___plugins___name",
+  PluginOptionsPluginsVersion = "pluginOptions___plugins___version",
+  PluginOptionsPluginsPluginOptionsShowLineNumbers = "pluginOptions___plugins___pluginOptions___showLineNumbers",
+  PluginOptionsPluginsPluginFilepath = "pluginOptions___plugins___pluginFilepath",
   PluginOptionsPathToConfigModule = "pluginOptions___pathToConfigModule",
   PluginOptionsName = "pluginOptions___name",
   PluginOptionsPath = "pluginOptions___path",
+  PluginOptionsShowLineNumbers = "pluginOptions___showLineNumbers",
   PluginOptionsPathCheck = "pluginOptions___pathCheck",
   NodeApIs = "nodeAPIs",
   BrowserApIs = "browserAPIs",
@@ -1963,17 +2609,53 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 
 export type SitePluginPluginOptions = {
   __typename?: "SitePluginPluginOptions"
+  plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>
   pathToConfigModule?: Maybe<Scalars["String"]>
   name?: Maybe<Scalars["String"]>
   path?: Maybe<Scalars["String"]>
+  showLineNumbers?: Maybe<Scalars["Boolean"]>
   pathCheck?: Maybe<Scalars["Boolean"]>
 }
 
 export type SitePluginPluginOptionsFilterInput = {
+  plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>
   pathToConfigModule?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
   path?: Maybe<StringQueryOperatorInput>
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
   pathCheck?: Maybe<BooleanQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPlugins = {
+  __typename?: "SitePluginPluginOptionsPlugins"
+  resolve?: Maybe<Scalars["String"]>
+  id?: Maybe<Scalars["String"]>
+  name?: Maybe<Scalars["String"]>
+  version?: Maybe<Scalars["String"]>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptions>
+  pluginFilepath?: Maybe<Scalars["String"]>
+}
+
+export type SitePluginPluginOptionsPluginsFilterInput = {
+  resolve?: Maybe<StringQueryOperatorInput>
+  id?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+  version?: Maybe<StringQueryOperatorInput>
+  pluginOptions?: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>
+  pluginFilepath?: Maybe<StringQueryOperatorInput>
+}
+
+export type SitePluginPluginOptionsPluginsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsPluginsFilterInput>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptions = {
+  __typename?: "SitePluginPluginOptionsPluginsPluginOptions"
+  showLineNumbers?: Maybe<Scalars["Boolean"]>
+}
+
+export type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  showLineNumbers?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type SitePluginSortInput = {
@@ -1984,13 +2666,11 @@ export type SitePluginSortInput = {
 export type SiteSiteMetadata = {
   __typename?: "SiteSiteMetadata"
   description?: Maybe<Scalars["String"]>
-  image?: Maybe<Scalars["String"]>
   twitter?: Maybe<Scalars["String"]>
 }
 
 export type SiteSiteMetadataFilterInput = {
   description?: Maybe<StringQueryOperatorInput>
-  image?: Maybe<StringQueryOperatorInput>
   twitter?: Maybe<StringQueryOperatorInput>
 }
 

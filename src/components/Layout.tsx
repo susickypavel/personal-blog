@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children, title = "Blog", customMetaData = {} }) => {
-  console.log(process.env.BASE_URL)
   return (
     <SocialMediaProvider>
       <Seo title={title} metaData={customMetaData} />

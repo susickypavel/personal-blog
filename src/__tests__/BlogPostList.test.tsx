@@ -8,6 +8,9 @@ jest.mock("gatsby")
 const mockedUseStaticQuery = useStaticQuery as jest.Mock
 
 const responseValues = {
+  allImageSharp: {
+    edges: [{ node: { fluid: { originalName: "test.png" } } }]
+  },
   allMarkdownRemark: {
     edges: [
       {
@@ -16,7 +19,8 @@ const responseValues = {
             slug: "/hello-world"
           },
           frontmatter: {
-            title: "Cool bro"
+            title: "Cool bro",
+            thumbnail: "test.png"
           }
         }
       }

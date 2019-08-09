@@ -1,10 +1,19 @@
 import React from "react"
 import { Link } from "gatsby"
-import Img, { FluidObject } from "gatsby-image"
+import { FluidObject } from "gatsby-image"
 
 import { MarkdownRemark, ImageSharpFluid } from "@generated/graphql.d"
 import { formatDate } from "@utils/index"
 import { createPostPath } from "@utils/index"
+import {
+  BlogPostPreviewThumbnail,
+  BlogPostPreviewHolder,
+  BlogPostPreviewHeadline,
+  BlogPostPreviewDate,
+  BlogPostPreviewReadMoreButton,
+  BlogPostPreviewBody,
+  BlogPostPreviewBodyText
+} from "./__styles__"
 
 interface Props {
   post: MarkdownRemark
@@ -19,12 +28,16 @@ const BlogPostPreview: React.FC<Props> = ({
   thumbnail
 }) => {
   return (
-    <div>
-      <Img fluid={thumbnail as FluidObject} />
-      <h2>{title}</h2>
-      <p>{formatDate(uploadDate)}</p>
-      <Link to={createPostPath(slug)}>Read more</Link>
-    </div>
+    <BlogPostPreviewHolder>
+      <BlogPostPreviewThumbnail fluid={thumbnail as FluidObject} />
+      <BlogPostPreviewBody>
+        <BlogPostPreviewBodyText>
+          <BlogPostPreviewHeadline>{title}</BlogPostPreviewHeadline>
+          <BlogPostPreviewDate>{formatDate(uploadDate)}</BlogPostPreviewDate>
+        </BlogPostPreviewBodyText>
+        <BlogPostPreviewReadMoreButton to={createPostPath(slug)}>Read more</BlogPostPreviewReadMoreButton>
+      </BlogPostPreviewBody>
+    </BlogPostPreviewHolder>
   )
 }
 

@@ -3,14 +3,21 @@ import Typography from "typography"
 const typography = new Typography({
   googleFonts: [
     {
-      name: "Open Sans",
-      styles: ["300", "400", "500", "600", "700"]
+      name: "Audiowide",
+      styles: ["400"]
     }
   ],
   baseLineHeight: 1.666,
-  headerFontFamily: ["Open Sans"],
-  bodyFontFamily: ["Open Sans", "sans-serif"],
-  includeNormalize: true
+  headerFontFamily: ["Audiowide"],
+  bodyFontFamily: ["Audiowide", "sans-serif"],
+  includeNormalize: true,
+  overrideStyles: () => {
+    return {
+      "h1, h2, h3, h4, h5, h6": {
+        fontWeight: 500
+      }
+    }
+  }
 })
 
 export default typography

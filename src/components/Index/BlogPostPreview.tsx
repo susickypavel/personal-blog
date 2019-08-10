@@ -12,7 +12,7 @@ import {
   BlogPostPreviewDate,
   BlogPostPreviewReadMoreButton,
   BlogPostPreviewBody,
-  BlogPostPreviewBodyText
+  BlogPostPreviewUpper
 } from "./__styles__"
 
 interface Props {
@@ -27,16 +27,20 @@ const BlogPostPreview: React.FC<Props> = ({
   },
   thumbnail
 }) => {
+  const postUrl = createPostPath(slug)
+
   return (
     <BlogPostPreviewHolder>
-      <BlogPostPreviewThumbnail fluid={thumbnail as FluidObject} />
-      <BlogPostPreviewBody>
-        <BlogPostPreviewBodyText>
+      <BlogPostPreviewUpper>
+        <Link to={postUrl}>
+          <BlogPostPreviewThumbnail fluid={thumbnail as FluidObject} />
+        </Link>
+        <BlogPostPreviewBody>
           <BlogPostPreviewHeadline>{title}</BlogPostPreviewHeadline>
           <BlogPostPreviewDate>{formatDate(uploadDate)}</BlogPostPreviewDate>
-        </BlogPostPreviewBodyText>
-        <BlogPostPreviewReadMoreButton to={createPostPath(slug)}>Read more</BlogPostPreviewReadMoreButton>
-      </BlogPostPreviewBody>
+        </BlogPostPreviewBody>
+      </BlogPostPreviewUpper>
+      <BlogPostPreviewReadMoreButton to={postUrl}>Read more</BlogPostPreviewReadMoreButton>
     </BlogPostPreviewHolder>
   )
 }

@@ -43,4 +43,22 @@ describe("BlogPostPreview", () => {
     const ReadMoreButton = container.querySelector("a")
     expect(ReadMoreButton).toHaveAttribute("href", createPostPath("/hello-world"))
   })
+
+  test("should render blog post preview with estimated time to read", () => {
+    const { container } = render(
+      <BlogPostPreview
+        thumbnail={{}}
+        post={{
+          timeToRead: 5,
+          frontmatter: { title: "Cool bro" },
+          internal: null,
+          excerpt: null,
+          children: null,
+          id: null,
+          fields: { slug: "/hello-world" }
+        }}
+      />
+    )
+    expect(container.textContent).toContain("5 min")
+  })
 })

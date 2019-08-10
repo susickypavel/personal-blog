@@ -23,7 +23,8 @@ interface Props {
 const BlogPostPreview: React.FC<Props> = ({
   post: {
     fields: { slug },
-    frontmatter: { title, uploadDate }
+    frontmatter: { title, uploadDate },
+    timeToRead
   },
   thumbnail
 }) => {
@@ -37,7 +38,9 @@ const BlogPostPreview: React.FC<Props> = ({
         </Link>
         <BlogPostPreviewBody>
           <BlogPostPreviewHeadline>{title}</BlogPostPreviewHeadline>
-          <BlogPostPreviewDate>{formatDate(uploadDate)}</BlogPostPreviewDate>
+          <BlogPostPreviewDate>
+            {formatDate(uploadDate)} - {timeToRead} min read
+          </BlogPostPreviewDate>
         </BlogPostPreviewBody>
       </BlogPostPreviewUpper>
       <BlogPostPreviewReadMoreButton to={postUrl}>Read more</BlogPostPreviewReadMoreButton>

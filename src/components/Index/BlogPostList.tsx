@@ -25,6 +25,7 @@ const BlogPostList: React.FC = () => {
         edges {
           node {
             id
+            timeToRead
             frontmatter {
               title
               uploadDate

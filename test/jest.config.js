@@ -3,6 +3,7 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest"
   },
   testPathIgnorePatterns: ["/node_modules/", ".cache"],
+  setupFilesAfterEnv: ["@testing-library/react/cleanup-after-each"],
   moduleNameMapper: {
     "@components(.*)$": "<rootDir>/src/components$1",
     "@generated(.*)$": "<rootDir>/src/generated$1",

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { FluidObject } from "gatsby-image"
 
@@ -28,22 +28,28 @@ const BlogPostPreview: React.FC<Props> = ({
   },
   thumbnail
 }) => {
+  const [hovered, setHover] = useState(false)
   const postUrl = createPostPath(slug)
+
+  const onLinkHover = () => setHover(true)
+  const onLinkLeave = () => setHover(false)
 
   return (
     <BlogPostPreviewHolder>
       <BlogPostPreviewUpper>
-        <Link to={postUrl}>
+        <Link to={postUrl} onMouseEnter={onLinkHover} onMouseLeave={onLinkLeave}>
           <BlogPostPreviewThumbnail fluid={thumbnail as FluidObject} />
         </Link>
-        <BlogPostPreviewBody>
+        <BlogPostPreviewBody selected={hovered}>
           <BlogPostPreviewHeadline>{title}</BlogPostPreviewHeadline>
           <BlogPostPreviewDate>
             {formatDate(uploadDate)} - {timeToRead} min read
           </BlogPostPreviewDate>
         </BlogPostPreviewBody>
       </BlogPostPreviewUpper>
-      <BlogPostPreviewReadMoreButton to={postUrl}>Read more</BlogPostPreviewReadMoreButton>
+      <BlogPostPreviewReadMoreButton to={postUrl} onMouseEnter={onLinkHover} onMouseLeave={onLinkLeave}>
+        Read more
+      </BlogPostPreviewReadMoreButton>
     </BlogPostPreviewHolder>
   )
 }

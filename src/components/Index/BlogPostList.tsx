@@ -5,6 +5,8 @@ import BlogPostPreview from "@components/Index/BlogPostPreview"
 import { Query } from "@generated/graphql.d"
 import { getThumbnailForPost } from "@utils/getThumbnailForPost"
 
+import { BlogPostListHolder } from "./__styles__"
+
 const BlogPostList: React.FC = () => {
   const {
     allMarkdownRemark,
@@ -40,14 +42,14 @@ const BlogPostList: React.FC = () => {
     }
   `)
   return (
-    <div>
+    <BlogPostListHolder>
       {allMarkdownRemark.edges.map(({ node }) => {
         const {
           node: { fluid }
         } = getThumbnailForPost(edges, node.frontmatter.thumbnail)
         return <BlogPostPreview key={node.frontmatter.title} post={node} thumbnail={fluid} />
       })}
-    </div>
+    </BlogPostListHolder>
   )
 }
 

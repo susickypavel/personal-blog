@@ -6,6 +6,12 @@ import { BackgroundFlowAnimation } from "@css/animations-styles"
 
 export const BlogPostPreviewHolder = styled.div`
   max-width: 500px;
+  width: 100%;
+  margin-bottom: 16px;
+
+  @media (max-width: 500px) {
+    padding: 8px;
+  }
 `
 
 export const BlogPostPreviewUpper = styled.div`
@@ -55,3 +61,10 @@ export const BlogPostPreviewReadMoreButton = styled(Link)`
 `
 
 export const BlogPostPreviewThumbnail = styled(Img)``
+
+export const BlogPostListHolder = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+`

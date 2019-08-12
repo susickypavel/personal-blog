@@ -3,30 +3,48 @@ import styled from "@emotion/styled"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
 import { BackgroundFlowAnimation } from "@css/animations-styles"
+import {
+  BLOGPOSTPREVIEW_MAXWIDTH,
+  BLOGPOSTPREVIEW_MQ_PADDING,
+  BLOGPOSTPREVIEW_MARGIN,
+  BLOGPOSTPREVIEWUPPER_MARGINBOTTOM,
+  BLOGPOSTPREVIEWUPPER_BORDERRADIUS,
+  BLOGPOSTPREVIEWUPPER_BOXSHADOW,
+  BLOGPOSTPREVIEWBODY_BG_HOVERED,
+  BLOGPOSTPREVIEWBODY_BG,
+  BLOGPOSTPREVIEWBODY_PADDING,
+  BLOGPOSTPREVIEWHEADLINE_FONTSIZE,
+  BLOGPOSTPREVIEWHEADLINE_MARGINBOTTOM,
+  BLOGPOSTPREVIEWDATE_FONTSIZE,
+  BLOGPOSTPREVIEWREADMORE_BORDERRADIUS,
+  BLOGPOSTPREVIEWREADMORE_PADDING,
+  BLOGPOSTPREVIEWREADMORE_WIDTH,
+  BLOGPOSTPREVIEWREADMORE_FONTSIZE
+} from "@css/constants"
 
 export const BlogPostPreviewHolder = styled.div`
-  max-width: 500px;
   width: 100%;
-  margin-bottom: 16px;
+  max-width: ${BLOGPOSTPREVIEW_MAXWIDTH};
+  margin-bottom: ${BLOGPOSTPREVIEW_MARGIN};
 
-  @media (max-width: 500px) {
-    padding: 8px;
+  @media (max-width: ${BLOGPOSTPREVIEW_MAXWIDTH}) {
+    padding: ${BLOGPOSTPREVIEW_MQ_PADDING};
   }
 `
 
 export const BlogPostPreviewUpper = styled.div`
-  margin-bottom: 8px;
-  border-radius: 4px;
+  margin-bottom: ${BLOGPOSTPREVIEWUPPER_MARGINBOTTOM};
+  border-radius: ${BLOGPOSTPREVIEWUPPER_BORDERRADIUS};
   overflow: hidden;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: ${BLOGPOSTPREVIEWUPPER_BOXSHADOW};
 `
 
 export const BlogPostPreviewBody = styled.div<{ selected: boolean }>`
   background: ${props => {
-    return props.selected ? "linear-gradient(219deg, #8c1eff, #f222ff, #ff2975, #f222ff, #8c1eff)" : "#f222ff"
+    return props.selected ? BLOGPOSTPREVIEWBODY_BG_HOVERED : BLOGPOSTPREVIEWBODY_BG
   }};
   background-size: 1000% 1000%;
-  padding: 8px;
+  padding: ${BLOGPOSTPREVIEWBODY_PADDING};
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -35,23 +53,23 @@ export const BlogPostPreviewBody = styled.div<{ selected: boolean }>`
 `
 
 export const BlogPostPreviewHeadline = styled.h2`
-  font-size: 2.6rem;
-  margin-bottom: 8px;
+  font-size: ${BLOGPOSTPREVIEWHEADLINE_FONTSIZE};
+  margin-bottom: ${BLOGPOSTPREVIEWHEADLINE_MARGINBOTTOM};
 `
 export const BlogPostPreviewDate = styled.p`
-  font-size: 1.4rem;
+  font-size: ${BLOGPOSTPREVIEWDATE_FONTSIZE};
 `
 export const BlogPostPreviewReadMoreButton = styled(Link)`
   display: block;
-  border-radius: 4px;
-  padding: 8px;
+  border-radius: ${BLOGPOSTPREVIEWREADMORE_BORDERRADIUS};
+  padding: ${BLOGPOSTPREVIEWREADMORE_PADDING};
   margin: 0 auto;
-  width: 120px;
+  width: ${BLOGPOSTPREVIEWREADMORE_WIDTH};
   text-align: center;
   background-color: #8c1eff;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: ${BLOGPOSTPREVIEWREADMORE_FONTSIZE};
   font-weight: 700;
   color: white;
 

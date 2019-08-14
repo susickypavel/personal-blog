@@ -18,7 +18,8 @@
       "@generated/*": ["generated/*"],
       "@css/*": ["css/*"],
       "@utils/*": ["utils/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": ["src/**/*", "index.d.ts"]

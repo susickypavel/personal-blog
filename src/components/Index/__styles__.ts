@@ -24,12 +24,7 @@ import {
 
 export const BlogPostPreviewHolder = styled.div`
   width: 100%;
-  max-width: ${BLOGPOSTPREVIEW_MAXWIDTH};
   margin-bottom: ${BLOGPOSTPREVIEW_MARGIN};
-
-  @media (max-width: ${BLOGPOSTPREVIEW_MAXWIDTH}) {
-    padding: ${BLOGPOSTPREVIEW_MQ_PADDING};
-  }
 `
 
 export const BlogPostPreviewUpper = styled.div`
@@ -85,4 +80,16 @@ export const BlogPostListHolder = styled.div`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  max-width: ${BLOGPOSTPREVIEW_MAXWIDTH};
+  margin: 0 auto;
+
+  @media (max-width: ${BLOGPOSTPREVIEW_MAXWIDTH}) {
+    padding: ${BLOGPOSTPREVIEW_MQ_PADDING};
+  }
+`
+
+export const NoBlogPost = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 2.4rem;
 `

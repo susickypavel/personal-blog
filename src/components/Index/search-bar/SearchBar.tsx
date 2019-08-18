@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 
-import { Input, SearchingState } from "./__styles__"
+import { Input, SearchingState, InputHolder, ClearButton } from "./__styles__"
 import { useDebounce } from "@hooks/useDebounce"
 
 interface Props {
@@ -8,14 +8,29 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ setFiltered, children }) => {
+  const input = useRef<HTMLInputElement>()
   const [searchedTerm, setTerm] = useState<string>()
   const [searching, setSearching] = useState(false)
   const debouncedSearchedTerm = useDebounce(searchedTerm, 500)
+
+  const handleFocus = () => {
+    input.current.focus()
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearching(true)
     setTerm(e.target.value)
   }
+
+  const handleClick = () => {
+    input.current.value = ""
+    setSearching(false)
+    setFiltered(null)
+    setTerm("")
+    handleFocus()
+  }
+
+  const disabled = !input.current || input.current.value === ""
 
   useEffect(() => {
     setSearching(false)
@@ -24,7 +39,12 @@ const SearchBar: React.FC<Props> = ({ setFiltered, children }) => {
 
   return (
     <>
-      <Input type="text" onChange={handleChange} />
+      <InputHolder>
+        <Input type="text" onChange={handleChange} ref={input} />
+        <ClearButton disabled={disabled} onBlur={handleFocus} onClick={handleClick}>
+          x
+        </ClearButton>
+      </InputHolder>
       {searching ? <SearchingState>Searching...</SearchingState> : children}
     </>
   )

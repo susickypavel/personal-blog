@@ -2,15 +2,38 @@ import styled from "@emotion/styled"
 
 import { BLOGPOSTPREVIEW_MAXWIDTH, PRIMARY_COLOR } from "@css/constants"
 
+export const InputHolder = styled.div`
+  width: 100%;
+  position: relative;
+  margin: 16px 0;
+`
+
+export const ClearButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+
+  outline: none;
+  &:focus {
+    background: red;
+  }
+`
+
 export const Input = styled.input`
   width: 100%;
   max-width: ${BLOGPOSTPREVIEW_MAXWIDTH};
-  margin: 16px 0;
   padding: 8px;
+  padding-right: 44px;
   outline: none;
   font-size: 1.6rem;
   color: gray;
-  border: 1px solid ${PRIMARY_COLOR};
+  border: 3px solid ${PRIMARY_COLOR};
+  border-radius: 4px;
 `
 
 export const SearchingState = styled.div`

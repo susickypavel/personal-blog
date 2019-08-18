@@ -1,3 +1,6 @@
+/** GLOBALS */
+export const PRIMARY_COLOR = "#f222ff"
+
 /** BLOGPOSTPREVIEW */
 export const BLOGPOSTPREVIEW_MAXWIDTH = "500px"
 export const BLOGPOSTPREVIEW_MARGIN = "16px"

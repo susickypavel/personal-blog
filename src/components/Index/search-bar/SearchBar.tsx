@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
 
 import { Input, SearchingState, InputHolder, ClearButton } from "./__styles__"
 import { useDebounce } from "@hooks/useDebounce"
@@ -42,7 +44,7 @@ const SearchBar: React.FC<Props> = ({ setFiltered, children }) => {
       <InputHolder>
         <Input type="text" onChange={handleChange} ref={input} />
         <ClearButton disabled={disabled} onBlur={handleFocus} onClick={handleClick}>
-          x
+          <FontAwesomeIcon icon={faTimes} size="xs" />
         </ClearButton>
       </InputHolder>
       {searching ? <SearchingState>Searching...</SearchingState> : children}

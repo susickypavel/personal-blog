@@ -9,6 +9,11 @@ export const InputHolder = styled.div`
 `
 
 export const ClearButton = styled.button`
+  padding: 0;
+
+  height: 25px;
+  width: 25px;
+
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -18,9 +23,24 @@ export const ClearButton = styled.button`
   width: 25px;
   border-radius: 100%;
 
+  border: none;
   outline: none;
+
+  font-size: 24px;
+
+  &:hover {
+    cursor: pointer;
+    background: pink;
+  }
+
   &:focus {
     background: red;
+  }
+
+  & svg {
+    height: 12.5px;
+    width: 12.5px;
+    padding: calc(12.5 / 2);
   }
 `
 
